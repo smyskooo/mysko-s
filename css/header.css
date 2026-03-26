@@ -1,0 +1,409 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Дуже важливо! */
+}
+
+body, html {
+    height: 100%;
+    overflow: hidden; /* Це залізобетонно прибере скрол */
+}
+
+
+
+
+
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 20px 60px; /* Відступи від країв екрана */
+}
+
+.header-content {
+    display: flex;
+    justify-content: flex-end; /* Притискаємо все до правого краю */
+    align-items: center;       /* Вирівнюємо текст і бургер по центру лінії */
+   width: 100%;
+    gap: 0px;                 /* Відстань між меню та бургером */
+}
+
+.header__logo-wrapper {
+    margin-right: auto; /* МАГІЯ: штовхає меню в крайній правий кут */
+    display: block;
+    line-height: 0; /* Прибираємо зайві відступи навколо картинки */
+    text-decoration: none;
+}
+
+/* Сама картинка-логотип */
+.header__logo-img {
+    height: 55px; /* Задаємо чітку висоту, ширина підлаштується автоматично */
+    width: auto;
+    object-fit: contain; /* Щоб картинка не сплющилася */
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Додамо легку анімацію при наведенні */
+}
+
+
+/* Ефект при наведенні: логотип трохи збільшується */
+.header__logo-wrapper:hover .header__logo-img {
+    transform: scale(1.1);
+}
+
+.header__menu {
+    /* margin-right задає відстань від бургера. 
+       Збільшимо її, щоб меню "втекло" лівіше до логотипу */
+  margin-right: 60px;
+}
+
+.menu__list {
+    display: flex;
+    list-style: none;
+    gap: 30px; /* Відстань між About, Works, Info */
+    gap: 40px;
+    margin: 0;
+    padding: 0;
+}
+
+.menu__link {
+    font-family: 'Noto Sans Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #000;
+    letter-spacing: 1.5px;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+}
+
+.menu__link:hover {
+    opacity: 1;
+    color: #26c4ac; /* Твій м'ятний акцент */
+}
+
+
+.top{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden; /* Щоб нічого не вилазило */
+    background-color: #fff; /* Білий фон сторінки */
+   
+    
+    
+    height: 100vh;
+     position: relative; /* Дуже важливо! Щоб текст "літав" усередині цієї секції */
+    height: 100vh;
+    width: 100%;
+    overflow: hidden; /* Щоб нічого не вилазило за межі екрана */
+    display: flex;
+    align-items: center; /* Це допоможе тримати текст приблизно по центру по вертикалі */
+    
+    
+}
+
+
+
+
+.top__hero {
+    position: absolute;
+    bottom: 0;
+    left: 13vw;
+    width: 40vw;   /* База по ширині */
+    height: 54vw;  /* ФІКСОВАНА ПРОПОРЦІЯ: тепер висота завжди залежить від ширини */
+    z-index: 1;
+    pointer-events: none;
+}
+
+.top__bg-img {
+    position: absolute; /* Міняємо на absolute */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    margin-bottom: -15px;
+    z-index: 1;
+    display: block;
+    filter: drop-shadow(0 0 10px rgba(45, 3, 255, 0.4));
+}
+
+.header__btn {
+    /* Прибираємо зайве позиціонування */
+    position: relative; 
+    top: 0; 
+    right: 0;
+
+    /* Розміри */
+    width: 45px; 
+    height: 12px; /* Це дасть простір між лініями */
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    
+    /* Відступ від меню */
+    margin-left: 0px;
+    z-index: 1001; 
+}
+
+.header__btn span {
+    display: block;
+    width: 100%;
+    height: 2px; /* Товщина ліній */
+    background-color: #000;
+    transition: 0.3s;
+}
+/* АНІМАЦІЯ БУРГЕРА ПРИ НАВЕДЕННІ */
+.header__btn:hover span:first-child {
+    transform: translateY(2px); /* Лінії трохи зближуються */
+}
+
+.header__btn:hover span:last-child {
+    transform: translateY(-2px);
+}
+
+.top__content {
+    position: absolute;
+    top: 65%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    
+    right: 60px;           /* Відступ від правого краю */
+    
+    /* Замість left використовуємо ширину */
+    width: 40%;          /* Блок займає праву половину екрана */
+    max-width: 600px;    /* Щоб на надвеликих моніторах текст не втік занадто далеко вліво */
+    
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Важливо для вирівнювання всередині flex-контейнера */
+    
+    z-index: 10;
+}
+
+.top__title {
+    font-family: 'Noto Sans Mono', monospace;
+    font-weight: 700;
+    
+   
+    font-size: 5.625em; 
+    
+    line-height: 0.85;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+    margin: 0;
+    margin-bottom: 0.2em; /* Трохи зменшив, щоб підпис був ближче */
+    color: #000;
+    white-space: nowrap; 
+}
+.top__slogan {
+    font-family: 'Noto Sans Mono', monospace; /* Теж моноширинний */
+    font-weight: 400; /* Звичайна товщина */
+    font-size: 1.5em;; /* Невеликий розмір */
+    letter-spacing: 2px; /* Трохи розсунемо букви (як на макеті) */
+    text-transform: uppercase; /* Тільки великі літери */
+    color: #000;
+    margin-bottom: 0;
+   
+}
+
+.ticker {
+    position: absolute;
+    bottom: 14px;
+    left: 0;
+    width: 100%;
+    background-color: transparent;
+    overflow: hidden;
+    z-index: 999;
+}
+
+.ticker__wrapper {
+    display: flex; /* Робимо їх в ряд без пробілів */
+    width: max-content; /* Дозволяємо контейнеру бути набагато ширшим за екран */
+    animation: marquee-fast 40s linear infinite; 
+}
+
+.ticker__item {
+    font-family: 'Noto Sans Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    text-transform: uppercase;
+    padding-right: 0; /* Прибираємо пробіл тут */
+    margin-right: 0;  /* І тут */
+    white-space: nowrap;
+}
+
+/* Оскільки ми додали 3 фрази, анімація на -33.33% зробить перехід непомітним */
+@keyframes marquee-fast {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-33.333%); 
+    }
+}
+
+/* --- СТИЛЬ КНОПКИ (така ж, як на мокапі) --- */
+.top__btn {
+    display: inline-block;
+    margin-top: 1em; /* Відступ від слогану */
+    padding: 0.6em 1.75em;
+    
+    /* ШРИФТ */
+    font-family: 'Noto Sans Mono', monospace;
+    font-size: 1.25em;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #000;
+    
+    /* РАМКА І ФОН */
+    border: 2px solid #000;
+    border-radius: 4px; /* Легке закруглення */
+    background-color: transparent;
+    
+    /* АНІМАЦІЯ */
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    cursor: pointer;
+    position: relative;
+    z-index: 1000; /* Кнопка має бути поверх усього */
+}
+
+/* --- ЕФЕКТ КНОПКИ ПРИ НАВЕДЕННІ (м'ята) --- */
+.top__btn:hover {
+    background-color: #26c4ac; /* М'ЯТНИЙ КОЛІР ЗАЛИВКИ */
+    color: #fff;               /* Білий текст */
+    border-color: #26c4ac;     /* Колір рамки теж м'ятний */
+    transform: scale(1.03);    /* Легке збільшення */
+}
+
+/* --- МАГІЯ ЧОРНО-БІЛОГО ДЛЯ ВСЬОГО АРТУ ТА ЛОГО --- */
+
+/* 1. Додаємо логотип у список для м'якого переходу */
+.top, 
+.top__bg-img, 
+.slide,
+.header__logo-wrapper { /* Додав твій логотип сюди */
+    transition: filter 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 2. Плавне знебарвлення: Девід, марки ТА логотип */
+.top:has(.top__btn:hover) .top__bg-img,
+.top:has(.top__btn:hover) .slide,
+.top:has(.top__btn:hover) ~ header .header__logo-wrapper, /* Якщо лого в хедері вище */
+body:has(.top__btn:hover) .header__logo-wrapper {       /* Універсальний шлях через body */
+    filter: grayscale(100%) contrast(1.1) brightness(0.9);
+}
+
+
+/* 1. АНІМАЦІЯ ПОЯВИ (М'який Crossfade) */
+@keyframes syncopatedFade {
+    0%, 10% { opacity: 0; }
+    20%, 45% { opacity: 1; } /* Картинка зафіксована і видима */
+    55%, 100% { opacity: 0; }
+}
+
+/* 2. КОНТЕЙНЕРИ */
+/* 1. РОЗШИРЮЄМО КОРДОНИ */
+.face-labyrinth {
+    position: absolute;
+    bottom: 0;     /* Прив'язуємо до низу, як і Боуї */
+    left: 0;
+    width: 100%;
+    height: 100%;  /* Тепер 100% — це рівно висота Боуї */
+    z-index: 5;
+    pointer-events: auto;
+}
+
+/* 2. ПРАВИЛЬНА СТОПКА КАРТИНОК */
+.fragment-box {
+    position: absolute;
+    /* Тепер тут не треба додавати height, вона підтягнеться від картинок */
+}
+
+/* Об'єднуємо стилі для картинок, щоб не дублювати */
+.fragment-box img, .slide {
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 3. ТВОЇ КООРДИНАТИ (тепер вони запрацюють!) */
+
+.fragment-box.p1 {
+    top: 65%;      /* Чітко на плече */
+    left: 18%; 
+    width: 11vw;
+    transform: rotate(-5deg);
+    z-index: 6;
+    
+}
+
+.fragment-box.p2 {
+    top: 35%;      /* Чітко на око/щоку */
+    left: 52%; 
+    width: 10vw;
+    transform: rotate(3deg);
+    z-index: 7;
+}
+
+.fragment-box.p3 {
+    top: 25%;       /* Чітко на зачіску */
+    left: 15%; 
+    width: 11vw;
+    transform: rotate(-2deg);
+    z-index: 8;
+}
+
+
+.slide {
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    width: 100%;
+    opacity: 0;
+    /* Плавність переходу для м'якості очей */
+    transition: opacity 0.1s ease-in-out; 
+}
+
+.fragment-box {
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+    transition: transform 0.3s ease; /* Для плавності */
+}
+
+.fragment-box:hover {
+    transform: scale(1.05) rotate(0deg); /* Марка "оживає" при наведенні */
+}
+
+/* 3. СКЛАДНА РИТМІЧНА СІТКА */
+
+/* ГРУПА 1: Цикл 7 секунд */
+.p1 .s1 { animation: syncopatedFade 7s infinite; animation-delay: 0s; }
+.p1 .s2 { animation: syncopatedFade 7s infinite; animation-delay: 2.3s; }
+.p1 .s3 { animation: syncopatedFade 7s infinite; animation-delay: 4.6s; }
+
+/* ГРУПА 2: Цикл 11 секунд */
+.p2 .s1 { animation: syncopatedFade 11s infinite; animation-delay: 1s; }
+.p2 .s2 { animation: syncopatedFade 11s infinite; animation-delay: 4.5s; }
+.p2 .s3 { animation: syncopatedFade 11s infinite; animation-delay: 8s; }
+
+/* ГРУПА 3: Цикл 9 секунд */
+.p3 .s1 { animation: syncopatedFade 9s infinite; animation-delay: 2s; }
+.p3 .s2 { animation: syncopatedFade 9s infinite; animation-delay: 5s; }
+.p3 .s3 { animation: syncopatedFade 9s infinite; animation-delay: 7.5s; }
+
+
+
