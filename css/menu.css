@@ -1,0 +1,51 @@
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 250px; /* Панель займає лише частину екрана */
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5); /* Напівпрозорий білий */
+    backdrop-filter: blur(5px); /* Розмиття фону, щоб Боуї було видно крізь меню */
+    z-index: 5000;
+    display: flex;
+    align-items: center;
+    padding-left: 50px;
+    
+    /* Ховаємо панель за правий край */
+    transform: translateX(100%);
+    transition: transform 0.4s ease-in-out;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.05);
+}
+
+.menu-overlay.open {
+    transform: translateX(0); /* Виїжджає на екран */
+}
+
+.menu-link {
+    font-family: 'Noto Sans Mono', monospace;
+    font-size: 1 rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #000;
+    font-weight: 700;
+    display: block;
+    margin: 30px 0;
+    padding-right: 20px;
+    transition: 0.3s;
+}
+
+.menu-list {
+    list-style: none; /* Прибирає крапочки */
+    padding: 0;       /* Прибирає стандартний відступ зліва */
+    margin: 0;
+    text-align: left; /* Або center, як тобі більше подобається */
+}
+
+/* --- Твої кастомні кольори при наведенні --- */
+
+
+.link-space:hover { color: #1b9793; }  /* Космічний блакитний */
+.link-ziggy:hover { color: #e80f50; text-shadow: 0 0 10px rgba(255,75,43,0.3); } /* Червоний неон */
+.link-duke:hover { color: #413e3e; }   /* Холодний сірий */
+.link-super:hover { color: #ffd700; }  /* Золото 80-х */
+.link-black:hover { color: #272222;  } /* Містичний Blackstar */

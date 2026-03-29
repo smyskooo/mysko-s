@@ -89,7 +89,7 @@ body, html {
     width: 100%;
     height: 100vh;
     overflow: hidden; /* Щоб нічого не вилазило */
-    background-color: #fff; /* Білий фон сторінки */
+    background-color: transparent; /* Білий фон сторінки */
    
     
     
@@ -291,14 +291,14 @@ body, html {
 
 /* 1. Додаємо логотип у список для м'якого переходу */
 .top, 
-.top__bg-img, 
+
 .slide,
 .header__logo-wrapper { /* Додав твій логотип сюди */
     transition: filter 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* 2. Плавне знебарвлення: Девід, марки ТА логотип */
-.top:has(.top__btn:hover) .top__bg-img,
+
 .top:has(.top__btn:hover) .slide,
 .top:has(.top__btn:hover) ~ header .header__logo-wrapper, /* Якщо лого в хедері вище */
 body:has(.top__btn:hover) .header__logo-wrapper {       /* Універсальний шлях через body */
@@ -406,4 +406,13 @@ body:has(.top__btn:hover) .header__logo-wrapper {       /* Універсаль�
 .p3 .s3 { animation: syncopatedFade 9s infinite; animation-delay: 7.5s; }
 
 
+.header__logo-wrapper {
+    display: inline-block;
+    /* transition робить повернення платівки назад теж плавним */
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
+.header__logo-wrapper:hover {
+    /* 360 градусів — це рівно один повний оберт */
+    transform: rotate(360deg);
+}

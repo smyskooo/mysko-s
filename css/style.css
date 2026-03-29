@@ -1,0 +1,13 @@
+body {
+    /* Спочатку йде білий шар з прозорістю (0.8 — це 80% білого), 
+       а потім сама картинка */
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.8)), 
+        url('../img/paper.jpg') !important;
+        
+    background-size: cover !important;
+    background-attachment: fixed !important;
+    background-repeat: no-repeat !important;
+    opacity: 1;
+    transition: opacity 0.5s ease-in;
+}
