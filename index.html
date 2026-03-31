@@ -17,10 +17,19 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/header.css">
   <link rel="stylesheet" href="css/menu.css">
+
+
   
 </head>
 
 <body id="top">
+
+  <div class="black-night"></div>
+<div id="starTrigger" class="space-star">
+    <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+    </svg>
+</div>
 
 <div class="menu-overlay" id="menuOverlay">
     <nav class="menu-nav">
@@ -58,6 +67,9 @@
   
 
   <section class="top">
+
+
+
     <div class="top__hero">
 <div class="face-labyrinth">
     <div class="fragment-box p1">
@@ -89,9 +101,21 @@
     <p class="top__slogan">
 THE MAN OF A THOUSAND FACES
     </p>
-    <a href="1space-oddity.html" class="top__btn">LIFTOFF</a>
+   <div class="mission-control">
+    <div class="hint-wrapper">
+        <span class="hint-bracket hint-bracket--left">[</span>
+        <div class="hint-content">
+            <span class="hint-text--closed">LIFTOFF</span>
+            <span class="hint-text--open">SHIFT TO ESCAPE</span>
+        </div>
+        <span class="hint-bracket hint-bracket--right">]</span>
+    </div>
+</div>
   </div>
 </div>
+
+
+
 
 </div>
 <div class="ticker">
@@ -109,6 +133,7 @@ THE MAN OF A THOUSAND FACES
   </footer>
 
 <script>
+// 1. БУРГЕР МЕНЮ
 const burgerBtn = document.querySelector('.header__btn');
 const overlay = document.getElementById('menuOverlay');
 
@@ -117,31 +142,46 @@ burgerBtn.addEventListener('click', () => {
     burgerBtn.classList.toggle('active');
 });
 
-// Закриття при кліку поза меню (опціонально)
-document.addEventListener('click', (e) => {
-    if (overlay.classList.contains('open') && !overlay.contains(e.target) && !burgerBtn.contains(e.target)) {
-        overlay.classList.remove('open');
-        burgerBtn.classList.remove('active');
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const star = document.getElementById('starTrigger');
+    const body = document.body;
+
+    // 1. МАГІЯ КЛАВІШ (Control та Shift)
+    // Коли затиснуто — додаємо клас для інверсії
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Control' || e.key === 'Shift') {
+            body.classList.add('is-space-active');
+        }
+    });
+
+    // Коли відпущено — прибираємо
+    document.addEventListener('keyup', (e) => {
+        if (e.key === 'Control' || e.key === 'Shift') {
+            body.classList.remove('is-space-active');
+        }
+    });
+
+    // 2. КЛІК ПО ЗІРЦІ (Перехід)
+    if (star) {
+        star.addEventListener('click', (e) => {
+            e.preventDefault(); // На всякий випадок
+            
+            // Додаємо ефект плавного зникнення всього екрана
+            body.classList.add('is-exiting');
+
+            // Через 0.8 секунди переходимо на сторінку
+            setTimeout(() => {
+                window.location.href = '1space-oddity.html';
+            }, 800);
+        });
     }
 });
 
-// Плавний відліт на іншу сторінку
-const liftoffBtn = document.querySelector('.top__btn');
-if (liftoffBtn) {
-    liftoffBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        const link = this.href;
-        
-        document.body.style.opacity = '0';
-        document.body.style.transition = 'opacity 0.6s ease-out';
-        
-        setTimeout(() => {
-            window.location.href = link;
-        }, 600);
-    });
-}
-
 </script>
+
+
 </body>
 
 </html>

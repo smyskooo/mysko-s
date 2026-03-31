@@ -1,13 +1,112 @@
-body {
-    /* Спочатку йде білий шар з прозорістю (0.8 — це 80% білого), 
-       а потім сама картинка */
+
+
+/* Базовий стан для всіх сторінок-епох */
+body[class*="page-"] {
+    animation: textureReveal 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    opacity: 0;
+    background-size: 110% !important; /* Починаємо з трохи збільшеного фону */
+}
+
+@keyframes textureReveal {
+    from {
+        opacity: 0;
+        background-size: 115% !important;
+    }
+    to {
+        opacity: 1;
+        background-size: 100% !important; /* Повертаємо до нормального розміру */
+    }
+}
+
+.page-space-oddity {
     background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.8)), 
-        url('../img/paper.jpg') !important;
-        
-    background-size: cover !important;
-    background-attachment: fixed !important;
-    background-repeat: no-repeat !important;
+        linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.8)), 
+        url('../img/space-paper.jpg') !important;
+}
+
+/* Епоха #2: Глем-рок / Текстура з блискітками або фольгою */
+.page-ziggy-stardust {
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), 
+        url('../img/glitter-paper.jpg') !important;
+}
+
+/* Епоха #3: Берлінська трилогія / Холодний бетон або цупкий картон */
+.page-berlin {
+    background-image: 
+        linear-gradient(rgba(230, 235, 240, 0.1), rgba(230, 235, 240, 0.1)), 
+        url('../img/concrete-paper.jpg') !important;
+}
+
+.page-superstar {
+    background-image: 
+        linear-gradient(rgba(230, 235, 240, 0.85), rgba(230, 235, 240, 0.85)), 
+        url('../img/star-paper.jpg') !important;
+}
+
+.page-blackstar {
+    background-image: 
+        linear-gradient(rgba(230, 235, 240, 0.2), rgba(230, 235, 240, 0.2)), 
+        url('../img/black-paper.jpg') !important;
+}
+
+
+/* Базовий стан для сторінок епох */
+/* Шукай свій клас для нової сторінки */
+.page-space-oddity {
+    opacity: 0; 
+    /* ПАРАМЕТР ПЛАВНОСТІ: 2.0s — це час появи. 
+       cubic-bezier робить рух не лінійним, а "живим" */
+    animation: fadeInPage 2.0s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    
+    /* Можна додати невелику затримку, щоб браузер "встиг" підвантажити текстуру */
+    animation-delay: 0.8s; 
+}
+
+@keyframes fadeInPage {
+    from { 
+        opacity: 0; 
+        filter: blur(10px) brightness(0.8); /* Починаємо з розмитого і темного */
+    }
+    to { 
+        opacity: 1; 
+        filter: blur(0) brightness(1); /* Виходимо в ідеальну чіткість */
+    }
+}
+
+
+
+
+/* Стандартний стан зірки — вона невидима і не заважає клікати */
+.space-star {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999999;
+    color: #d93b53; /* Колір, який при інверсії стане м'ятним */
+    opacity: 0;
+    pointer-events: none;
+    cursor: pointer;
+    transition: opacity 0.5s ease;
+}
+
+/* Коли затиснуто клавіші (Клас додається до BODY) */
+body.is-space-active {
+    background-image: none !important;
+    background-color: #000 !important;
+    filter: invert(1) hue-rotate(180deg) !important;
+}
+
+/* Показуємо зірку в режимі космосу */
+body.is-space-active .space-star {
     opacity: 1;
-    transition: opacity 0.5s ease-in;
+    pointer-events: auto; /* Тепер по ній можна клікнути */
+}
+
+/* Ефект при кліку (зникнення всього) */
+body.is-exiting {
+    transition: opacity 1s ease, filter 1s ease;
+    opacity: 0;
+    filter: blur(20px);
 }

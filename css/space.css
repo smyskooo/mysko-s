@@ -1,0 +1,150 @@
+/* --- Стилізація Кнопки --- */
+.audio-player {
+    margin-top: 40px; /* Відступ від заголовка */
+    position: relative;
+    z-index: 10; /* Щоб кнопка була над анімацією */
+}
+
+.play-btn {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 30px;
+    background: transparent;
+    border: 2px solid #000000; /* Біла рамка, як у колажів */
+    color: #000000;
+    border-radius: 4px;
+    font-family: 'Noto Sans Mono', monospace;
+    font-size: 16px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.play-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Стан, коли музика грає (міняємо іконку) */
+.play-btn.playing .play-btn__icon {
+    content: "❚❚"; /* Іконка Pause */
+}
+
+/* --- М'ятна Анімація збоку --- */
+
+/* Контейнер для хвилі (ховаємо все за межі екрану) */
+/* Контейнер, що заливає весь екран */
+.beat-visualizer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0; /* Тепер це ПІД текстом, але НАД папером */
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+}
+
+.beat-visualizer.active {
+    opacity: 1;
+}
+
+/* М'ятна заливка, яка "гуляє" по листу */
+.mint-wave {
+    position: absolute;
+    width: 150vw; /* Більше за екран */
+    height: 150vh;
+    top: -25vh;
+    left: -25vw;
+    
+    /* Робимо м'який градієнт, який заповнює майже все */
+    background: radial-gradient(circle, 
+        rgba(152, 255, 152, 0.25) 0%, 
+        rgba(152, 255, 152, 0.1) 50%, 
+        transparent 80%);
+    
+    filter: blur(100px);
+    mix-blend-mode: overlay; /* Щоб колір просочувався крізь текстуру паперу */
+}
+
+/* Коли музика грає — додаємо "біт" */
+/* --- Нова М'ятна Анімація «Дихання» --- */
+
+/* Контейнер для візуалізатора — на весь екран, ПІД контентом */
+.beat-visualizer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none; /* Щоб не заважало клікати */
+    z-index: 0; /* Ставимо під текст і кнопки */
+    overflow: hidden;
+    opacity: 0; /* Початково невидимий */
+    transition: opacity 3s ease-in-out; /* Поява самого контейнера */
+}
+
+/* Коли музика активна, робимо видимим */
+.beat-visualizer.active {
+    opacity: 1;
+}
+
+/* Сама м'ятна хвиля — тепер це ВЕРТИКАЛЬНА смуга зліва */
+.mint-wave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 25vw; /* Займає 25% ширини екрану (можеш підібрати під себе) */
+    height: 100vh;
+    
+    /* Супер-м'який лінійний градієнт: м'ятний (зліва) -> прозорий (справа) */
+    background: linear-gradient(to right, 
+        rgba(10, 215, 102, 0.4) 0%,   /* Насичений м'ятний (прозорість 0.4) */
+        rgba(152, 255, 152, 0.2) 50%,  /* Ледь м'ятний посередині */
+        rgba(152, 255, 152, 0) 100%    /* Повністю прозорий справа */
+    ) !important;
+    
+    filter: blur(20px); /* Легке розмиття для м'якості краю */
+    
+    /* Плавна поява */
+      transition: width 4s cubic-bezier(0.4, 0, 0.2, 1), opacity 3s ease; 
+    opacity: 0;
+
+    
+}
+
+/* Коли музика активна, смуга стає видимою */
+.beat-visualizer.active .mint-wave {
+    opacity: 1;
+    
+    /* ЗАПУСКАЄМО АНІМАЦІЮ «ДИХАННЯ» ТА РУХУ */
+    animation: 
+        spaceBreath 1.0s infinite alternate cubic-bezier(0.4, 0, 0.2, 1), /* Глибоке дихання */
+        spaceDriftVertical 15s infinite linear; /* Легке плавання вгору-вниз */
+}
+
+/* --- ОНОВЛЕНІ АНІМАЦІЇ ДЛЯ ГЛИБИНИ --- */
+
+/* Анімація «Дихання» під біт (змінюємо ширину та яскравість) */
+@keyframes spaceBreath {
+    0% {
+        width: 15vw; /* Початкова вузька смуга */
+        opacity: 0.4;
+        filter: blur(30px) saturate(120%);
+    }
+    100% {
+        width: 45vw; /* Плавне розтягування майже на пів екрана */
+        opacity: 0.8;
+        filter: blur(40px) saturate(180%);
+    }
+}
+
+/* Анімація вертикального плавання (щоб не стояло на місці) */
+@keyframes spaceDriftVertical {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-30px); } /* Легко піднімається вгору */
+    100% { transform: translateY(0); }
+}
