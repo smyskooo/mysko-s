@@ -1,28 +1,87 @@
-/* --- Стилізація Кнопки --- */
-.audio-player {
-    margin-top: 40px; /* Відступ від заголовка */
-    position: relative;
-    z-index: 10; /* Щоб кнопка була над анімацією */
+.era-num {
+    position: fixed;
+    top: 40px;      /* Можеш підправити під свій хедер */
+    right: 60px;    /* Чітко в кутку */
+    font-family: 'Noto Sans Mono', monospace;
+    font-weight: 700;
+    letter-spacing: 2px;
+    z-index: 1000;
 }
+
+
+
+
+/* 2. ТЕКСТОВИЙ БЛОК — ЦЕНТРАЛЬНО-ПРАВИЙ */
+/* Контейнер на всю ширину, який штовхає контент вправо */
+.main-content-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-end; /* ШТОВХАЄМО ВСЕ ПРАВОРУЧ */
+    align-items: center;     /* Центруємо по вертикалі */
+    pointer-events: none;    /* Щоб не перекривало кліки по фону */
+}
+
+/* Сама "коробка" з текстом */
+.text-block {
+    width: 380px;            /* Ширина текстової колонки */
+    margin-right: 100px;     /* Відступ від правого краю екрана */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* ВСЕ ВСЕРЕДИНІ РІВНЯЄМО ПО ЛІВОМУ КРАЮ */
+    text-align: left;        /* Текст читається зліва направо */
+    padding-top: 35px;
+    pointer-events: auto;    /* Повертаємо можливість клікати по кнопках */
+}
+
+/* Твої стилі заголовків та кнопок */
+.era-title {
+    font-family: 'Noto Sans Mono', monospace;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 0.9;
+    margin: 0 0 10px 0;
+    white-space: nowrap;
+}
+
+.era-subtitle {
+    font-size: 16px;
+    margin-bottom: 17px;
+    opacity: 0.8;
+}
+
+.era-text {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+
+
+
+
 
 .play-btn {
     display: flex;
     align-items: center;
     gap: 15px;
-    padding: 15px 30px;
+    padding: 10px 20px;
     background: transparent;
-    border: 2px solid #000000; /* Біла рамка, як у колажів */
-    color: #000000;
+    border: 2px solid #08693f; /* Біла рамка, як у колажів */
+    color: #08693f;
     border-radius: 4px;
     font-family: 'Noto Sans Mono', monospace;
-    font-size: 16px;
+    font-size: 13px;
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .play-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(65, 210, 167, 0.1);
     transform: translateY(-2px);
 }
 
@@ -95,25 +154,24 @@
 /* Сама м'ятна хвиля — тепер це ВЕРТИКАЛЬНА смуга зліва */
 .mint-wave {
     position: absolute;
-    top: 0;
+    /* Міняємо width і height місцями, щоб хвиля була горизонтальною */
+    width: 100vw; 
+    height: 35vh; /* Висота самої смуги */
+    
     left: 0;
-    width: 25vw; /* Займає 25% ширини екрану (можеш підібрати під себе) */
-    height: 100vh;
-    
-    /* Супер-м'який лінійний градієнт: м'ятний (зліва) -> прозорий (справа) */
-    background: linear-gradient(to right, 
-        rgba(10, 215, 102, 0.4) 0%,   /* Насичений м'ятний (прозорість 0.4) */
-        rgba(152, 255, 152, 0.2) 50%,  /* Ледь м'ятний посередині */
-        rgba(152, 255, 152, 0) 100%    /* Повністю прозорий справа */
-    ) !important;
-    
-    filter: blur(20px); /* Легке розмиття для м'якості краю */
-    
-    /* Плавна поява */
-      transition: width 4s cubic-bezier(0.4, 0, 0.2, 1), opacity 3s ease; 
-    opacity: 0;
+    bottom: -35vh; /* Ховаємо ПОВНІСТЮ за нижній край екрана */
+    top: auto;    /* Відміняємо top, якщо він був */
 
-    
+    /* Міняємо градієнт: тепер він іде знизу (насичений) до верху (прозорий) */
+    background: linear-gradient(to top, 
+        rgba(10, 215, 102, 0.4) 0%, 
+        rgba(152, 255, 152, 0.2) 50%, 
+        rgba(152, 255, 152, 0) 100%
+    ) !important;
+
+    filter: blur(30px);
+    opacity: 0;
+    transition: transform 4s cubic-bezier(0.4, 0, 0.2, 1), opacity 3s ease;
 }
 
 /* Коли музика активна, смуга стає видимою */
@@ -129,22 +187,23 @@
 /* --- ОНОВЛЕНІ АНІМАЦІЇ ДЛЯ ГЛИБИНИ --- */
 
 /* Анімація «Дихання» під біт (змінюємо ширину та яскравість) */
-@keyframes spaceBreath {
+/* Коли музика активна, піднімаємо хвилю */
+.beat-visualizer.active .mint-wave {
+    opacity: 1;
+    animation: 
+        spaceBreathVertical 1.5s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes spaceBreathVertical {
     0% {
-        width: 15vw; /* Початкова вузька смуга */
+        transform: translateY(0); /* Хвиля ледь показується знизу */
         opacity: 0.4;
         filter: blur(30px) saturate(120%);
     }
     100% {
-        width: 45vw; /* Плавне розтягування майже на пів екрана */
+        /* Піднімаємо хвилю вгору на 30% висоти екрана */
+        transform: translateY(-30vh); 
         opacity: 0.8;
-        filter: blur(40px) saturate(180%);
+        filter: blur(50px) saturate(180%);
     }
-}
-
-/* Анімація вертикального плавання (щоб не стояло на місці) */
-@keyframes spaceDriftVertical {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-30px); } /* Легко піднімається вгору */
-    100% { transform: translateY(0); }
 }

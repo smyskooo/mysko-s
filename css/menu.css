@@ -2,50 +2,73 @@
     position: fixed;
     top: 0;
     right: 0;
-    width: 250px; /* Панель займає лише частину екрана */
+    width: 280px; 
     height: 100%;
-    background: rgba(255, 255, 255, 0.5); /* Напівпрозорий білий */
-    backdrop-filter: blur(5px); /* Розмиття фону, щоб Боуї було видно крізь меню */
+    background: #f7f4ea; 
     z-index: 5000;
-    display: flex;
-    align-items: center;
-    padding-left: 50px;
     
-    /* Ховаємо панель за правий край */
+    /* Центрування всієї панелі */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Центр по вертикалі */
+    align-items: center;     /* Центр по горизонталі */
+    text-align: center;      /* Центр тексту всередині рядків */
+    
+    padding: 0 20px;
     transform: translateX(100%);
-    transition: transform 0.4s ease-in-out;
-    box-shadow: -10px 0 30px rgba(0,0,0,0.05);
+    transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    box-shadow: -15px 0 60px rgba(0,0,0,0.1);
 }
 
 .menu-overlay.open {
-    transform: translateX(0); /* Виїжджає на екран */
+    transform: translateX(0);
 }
 
-.menu-link {
+/* ЗАГОЛОВОК */
+.menu-title {
     font-family: 'Noto Sans Mono', monospace;
-    font-size: 1 rem;
+    font-size: 18px;
+    font-weight: 800;
     text-transform: uppercase;
-    text-decoration: none;
-    color: #000;
-    font-weight: 700;
-    display: block;
-    margin: 30px 0;
-    padding-right: 20px;
-    transition: 0.3s;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #000;
+    display: inline-block;
+    white-space: nowrap;
 }
 
-.menu-list {
-    list-style: none; /* Прибирає крапочки */
-    padding: 0;       /* Прибирає стандартний відступ зліва */
-    margin: 0;
-    text-align: left; /* Або center, як тобі більше подобається */
+/* БЛОК ІНСТРУКЦІЇ */
+.instruction-block {
+    width: 100%; /* Щоб текст мав простір для центрування */
 }
 
-/* --- Твої кастомні кольори при наведенні --- */
+.instruction-block p {
+    font-family: 'Noto Sans Mono', monospace;
+    font-size: 12px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    /* Прибираємо nowrap тут, щоб довгі речення не вилазили за межі 280px */
+}
 
+/* НИЖНЯ ЧАСТИНА (LOOK FOR THE [BRACKETS]) */
+.menu-footer {
+    margin-top: 30px;
+    width: 100%;
+}
 
-.link-space:hover { color: #1b9793; }  /* Космічний блакитний */
-.link-ziggy:hover { color: #e80f50; text-shadow: 0 0 10px rgba(255,75,43,0.3); } /* Червоний неон */
-.link-duke:hover { color: #413e3e; }   /* Холодний сірий */
-.link-super:hover { color: #ffd700; }  /* Золото 80-х */
-.link-black:hover { color: #272222;  } /* Містичний Blackstar */
+.hint {
+    font-family: 'Noto Sans Mono', monospace;
+    /* ЗМЕНШУЄМО РОЗМІР ТУТ: */
+    font-size: 13px; 
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: block; /* Важливо для центрування */
+}
+
+.system-status {
+    font-family: 'Noto Sans Mono', monospace;
+    font-size: 10px;
+    opacity: 0.4;
+    text-transform: uppercase;
+}

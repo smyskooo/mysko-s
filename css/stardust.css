@@ -1,0 +1,94 @@
+.era-num {
+    position: fixed;
+    top: 40px;      /* Можеш підправити під свій хедер */
+    right: 60px;    /* Чітко в кутку */
+    font-family: 'Noto Sans Mono', monospace;
+    font-weight: 700;
+    letter-spacing: 2px;
+    z-index: 1000;
+}
+
+.main-content-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-start; /* ШТОВХАЄМО ВСЕ ПРАВОРУЧ */
+    align-items: center;     /* Центруємо по вертикалі */
+    pointer-events: none;    /* Щоб не перекривало кліки по фону */
+}
+
+/* Сама "коробка" з текстом */
+.text-block {
+    width: 430px;            /* Ширина текстової колонки */
+    margin-right: 500px;     /* Відступ від правого краю екрана */
+    margin-left: 100px;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* ВСЕ ВСЕРЕДИНІ РІВНЯЄМО ПО ЛІВОМУ КРАЮ */
+    text-align: left;        /* Текст читається зліва направо */
+    padding-top: 35px;
+    pointer-events: auto;    /* Повертаємо можливість клікати по кнопках */
+}
+
+/* Твої стилі заголовків та кнопок */
+.era-title {
+    font-family: 'Noto Sans Mono', monospace;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 0.9;
+    margin: 0 0 10px 0;
+    white-space: nowrap;
+}
+
+.era-subtitle {
+    font-size: 16px;
+    margin-bottom: 17px;
+    opacity: 0.8;
+}
+
+.era-text {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.play-btn {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 20px;
+    background: transparent;
+    border: 2px solid hsl(345, 86%, 35%); /* Біла рамка, як у колажів */
+    color: hsl(345, 86%, 35%);
+    border-radius: 4px;
+    font-family: 'Noto Sans Mono', monospace;
+    font-size: 13px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.play-btn:hover {
+    background: rgba(255, 5, 122, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Стан, коли музика грає (міняємо іконку) */
+.play-btn.playing .play-btn__icon {
+    content: "❚❚"; /* Іконка Pause */
+}

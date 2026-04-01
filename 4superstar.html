@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/header.css">
   <link rel="stylesheet" href="css/menu.css">
+  <link rel="stylesheet" href="css/superstar.css">
 </head>
 
 <body class="page-superstar ">
@@ -40,5 +41,57 @@
         </a>
 </div>
 
+
+<div class="era-num">#04 ICON</div>
+
+<div class="main-content-wrapper">
+    <div class="text-block">
+        <h1 class="era-title">THE POP ICON</h1>
+        <div class="era-subtitle">1983 — THE SERIOUS MOONLIGHT</div>
+        
+        <p class="era-text">
+            "Bowie stepped into the light as a global superstar, conquering the world with 'Let's Dance'. This was the era of tailored suits, bleached hair, and an undeniable charisma that made the world dance under the serious moonlight."
+        </p>
+
+        <div class="audio-player">
+            <button class="play-btn" id="musicToggle">
+                <span class="play-btn__icon">▶</span> 
+                <span class="play-btn__text">Listen to the Epoch</span>
+            </button>
+            <audio id="epochMusic" src="audio/lets-dance.mp3" loop></audio>
+        </div>
+    </div>
+</div>
+<script>
+// --- Аудіо і Анімація під Біт ---
+
+const musicBtn = document.getElementById('musicToggle');
+const audio = document.getElementById('epochMusic');
+
+// Створюємо візуалізатор в HTML через JS, щоб не смітити в коді
+const visualizer = document.createElement('div');
+visualizer.className = 'beat-visualizer';
+visualizer.innerHTML = '<div class="mint-wave"></div>';
+document.body.appendChild(visualizer); // Додаємо на сторінку
+
+musicBtn.addEventListener('click', function() {
+    if (audio.paused) {
+        // Якщо музика на паузі — вмикаємо
+        audio.play();
+        musicBtn.classList.add('playing'); // Змінюємо вигляд кнопки
+        visualizer.classList.add('active'); // Вмикаємо м'ятну хвилю
+        musicBtn.querySelector('.play-btn__text').innerText = 'Stop the Epoch';
+        musicBtn.querySelector('.play-btn__icon').innerText = '❚❚';
+    } else {
+        // Якщо грає — ставимо на паузу
+        audio.pause();
+        musicBtn.classList.remove('playing');
+        visualizer.classList.remove('active'); // Ховаємо м'ятну хвилю
+        musicBtn.querySelector('.play-btn__text').innerText = 'Listen to the Epoch';
+        musicBtn.querySelector('.play-btn__icon').innerText = '▶';
+    }
+});
+
+</script>
 
 </body>

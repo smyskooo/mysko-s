@@ -19,10 +19,7 @@
   <link rel="stylesheet" href="css/menu.css">
   <link rel="stylesheet" href="css/space.css">
 
-  <style>
-  /* Ховаємо body до того, як завантажиться основний CSS */
-  body { background-color: #000; } 
-</style>
+
   
 </head>
 
@@ -47,12 +44,27 @@
         </a>
 </div>
 
-<div class="audio-player">
-    <button class="play-btn" id="musicToggle">
-        <span class="play-btn__icon">▶</span> <span class="play-btn__text">Listen to the Epoch</span>
-    </button>
+<div class="era-num">#01 MAJOR TOM</div>
 
-    <audio id="epochMusic" src="audio/space-oddity.mp3" loop></audio>
+<div class="main-content-wrapper">
+    <div class="text-block">
+        <h1 class="era-title">SPACE ODDITY</h1>
+        <div class="era-subtitle">1969 — THE ACCIDENTAL ASTRONAUT</div>
+        
+        <p class="era-text">
+            "It wasn't just an album; it was a spacewalk. David introduces Major Tom — 
+            an astronaut who chooses never to return to Earth. As 'Space Oddity' played 
+            against the backdrop of the moon landing, the world held its breath."
+        </p>
+
+        <div class="audio-player">
+            <button class="play-btn" id="musicToggle">
+                <span class="play-btn__icon">▶</span> 
+                <span class="play-btn__text">Listen to the Epoch</span>
+            </button>
+            <audio id="epochMusic" src="audio/space-oddity.mp3" loop></audio>
+        </div>
+    </div>
 </div>
 
 <script>

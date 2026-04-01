@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/header.css">
   <link rel="stylesheet" href="css/menu.css">
+  <link rel="stylesheet" href="css/white-duke.css">
 </head>
 
 <body class="page-berlin">
@@ -36,8 +37,61 @@
 <header class="header">
     <div class="header-content">
         <a href="index.html" class="header__logo-wrapper">
-            <img src="img/logo.png" alt="Bowie Logo" class="header__logo-img">
+            <img src="img/logo.png" alt="Bowie Logo" class="header__logo-img" >
         </a>
 </div>
+
+<div class="era-num">#03 THE DUKE</div>
+
+<div class="main-content-wrapper">
+    <div class="text-block">
+        <h1 class="era-title">THE THIN WHITE DUKE</h1>
+        <div class="era-subtitle">1976 — THE ART OF DETACHMENT</div>
+        
+        <p class="era-text">
+            "Exhausted by fame, Bowie fled to West Berlin to rediscover his soul. Stripping away the glitter, he embraced minimalist electronics and Krautrock. In the shadow of the Wall, he recorded 'Heroes' — an anthem of hope and defiance."
+        </p>
+
+        <div class="audio-player">
+            <button class="play-btn" id="musicToggle">
+                <span class="play-btn__icon">▶</span> 
+                <span class="play-btn__text">Listen to the Epoch</span>
+            </button>
+            <audio id="epochMusic" src="audio/heroes.mp3" loop></audio>
+        </div>
+    </div>
+</div>
+
+<script>
+// --- Аудіо і Анімація під Біт ---
+
+const musicBtn = document.getElementById('musicToggle');
+const audio = document.getElementById('epochMusic');
+
+// Створюємо візуалізатор в HTML через JS, щоб не смітити в коді
+const visualizer = document.createElement('div');
+visualizer.className = 'beat-visualizer';
+visualizer.innerHTML = '<div class="mint-wave"></div>';
+document.body.appendChild(visualizer); // Додаємо на сторінку
+
+musicBtn.addEventListener('click', function() {
+    if (audio.paused) {
+        // Якщо музика на паузі — вмикаємо
+        audio.play();
+        musicBtn.classList.add('playing'); // Змінюємо вигляд кнопки
+        visualizer.classList.add('active'); // Вмикаємо м'ятну хвилю
+        musicBtn.querySelector('.play-btn__text').innerText = 'Stop the Epoch';
+        musicBtn.querySelector('.play-btn__icon').innerText = '❚❚';
+    } else {
+        // Якщо грає — ставимо на паузу
+        audio.pause();
+        musicBtn.classList.remove('playing');
+        visualizer.classList.remove('active'); // Ховаємо м'ятну хвилю
+        musicBtn.querySelector('.play-btn__text').innerText = 'Listen to the Epoch';
+        musicBtn.querySelector('.play-btn__icon').innerText = '▶';
+    }
+});
+
+</script>
 
 </body>

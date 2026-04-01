@@ -80,28 +80,97 @@ body, html {
 
 .menu__link:hover {
     opacity: 1;
-    color: #26c4ac; /* Твій м'ятний акцент */
+    color: #760e26; /* Твій м'ятний акцент */
+}
+
+/* 1. Дозволяємо нотатці позиціонуватися відносно пункту меню */
+.menu__item {
+    position: relative;
+    list-style: none;
+}
+
+/* 2. Стиль самої нотатки (аркуша) */
+.dropdown-note {
+    position: absolute;
+    /* Центруємо відносно слова */
+    top: calc(100% + 20px); 
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    
+    width: 200px;
+    background: #f7f4ea; /* Твій бежевий фон */
+    border: 1px solid #000; /* Тонка чорна рамка як на малюнку */
+    padding: 15px;
+    
+    /* Приховано за замовчуванням */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+/* 3. Поява при наведенні на пункт меню */
+.menu__item:hover .dropdown-note {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* 4. Текст всередині нотатки */
+.dropdown-note p {
+    font-family: 'Noto Sans Mono', monospace;
+    font-size: 11px;
+    line-height: 1.5;
+    color: #000;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0;
+}
+
+/* 5. Трикутник зверху (як на твоєму малюнку) */
+.note-arrow {
+    position: absolute;
+    top: -6px; /* Виносимо на рамку */
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 10px;
+    height: 10px;
+    background: #f7f4ea;
+    border-top: 1px solid #000;
+    border-left: 1px solid #000;
+}
+
+/* 6. "Місток", щоб меню не зникало, коли ведеш мишку вниз до тексту */
+.dropdown-note::before {
+    content: '';
+    position: absolute;
+    top: -25px;
+    left: 0;
+    width: 100%;
+    height: 25px;
 }
 
 
-.top{
+
+
+.top {
     position: relative;
     width: 100%;
     height: 100vh;
-    overflow: hidden; /* Щоб нічого не вилазило */
-    background-color: #f7f4ea; /* Білий фон сторінки */
-   
-    
-    
-    height: 100vh;
-     position: relative; /* Дуже важливо! Щоб текст "літав" усередині цієї секції */
-    height: 100vh;
-    width: 100%;
-    overflow: hidden; /* Щоб нічого не вилазило за межі екрана */
+    overflow: hidden;
     display: flex;
-    align-items: center; /* Це допоможе тримати текст приблизно по центру по вертикалі */
+    align-items: center;
+
+    /* ФОНОВА КАРТИНКА */
+    background-color: #f7f4ea; /* Страховка, якщо картинка не провантажиться */
+    background-image: url('../img/paper.jpg'); 
+    background-size: cover;    /* Розтягнути на весь екран */
+    background-position: center;
+    background-repeat: no-repeat;
     
-    
+    /* Додаємо невелике змішування, щоб текстура була м'якшою */
+    background-blend-mode: multiply; 
 }
 
 
@@ -528,3 +597,7 @@ body.is-space-active .space-star:hover {
                 filter 0.3s ease, 
                 fill 0.3s ease; 
 }
+
+
+/* --- НОВЕ МЕНЮ-ІНСТРУКЦІЯ (COMMAND CENTER) --- */
+

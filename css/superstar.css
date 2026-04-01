@@ -1,0 +1,87 @@
+.era-num {
+    position: fixed;
+    top: 420px;      /* Можеш підправити під свій хедер */
+    right: 60px;    /* Чітко в кутку */
+    font-family: 'Noto Sans Mono', monospace;
+    font-weight: 700;
+    letter-spacing: 2px;
+    z-index: 1000;
+}
+
+.main-content-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center; /* ЦЕНТРУЄМО КОРОБКУ ПО ГОРИЗОНТАЛІ */
+    align-items: center;     /* ЦЕНТРУЄМО КОРОБКУ ПО ВЕРТИКАЛІ */
+    pointer-events: none;
+}
+
+/* Сама "коробка" з текстом: центрує все всередині себе */
+.text-block {
+    width: 500px;            /* Можна трохи розширити для центрального макета */
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;     /* ЦЕНТРУЄМО ЗАГОЛОВОК, ТЕКСТ І КНОПКУ */
+    text-align: center;      /* ВИРІВНЮЄМО САМІ РЯДКИ ТЕКСТУ ПО ЦЕНТРУ */
+    padding: 20px;
+    pointer-events: auto;
+   
+}
+
+/* Твої стилі заголовків та кнопок */
+.era-title {
+    font-family: 'Noto Sans Mono', monospace;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 0.9;
+    margin: 0 0 10px 0;
+    white-space: nowrap;
+    
+}
+
+.era-subtitle {
+    font-size: 16px;
+    margin-bottom: 17px;
+    opacity: 0.8;
+}
+
+.era-text {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+
+
+
+.play-btn {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 20px;
+    background: transparent;
+    border: 2px solid #5c4009; /* Біла рамка, як у колажів */
+    color: #5c4009;
+    border-radius: 4px;
+    font-family: 'Noto Sans Mono', monospace;
+    font-size: 13px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.play-btn:hover {
+    background: rgba(255, 234, 44, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Стан, коли музика грає (міняємо іконку) */
+.play-btn.playing .play-btn__icon {
+    content: "❚❚"; /* Іконка Pause */
+}
+

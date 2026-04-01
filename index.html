@@ -33,13 +33,20 @@
 
 <div class="menu-overlay" id="menuOverlay">
     <nav class="menu-nav">
-         <ul class="menu-list">
-             <li><a href="1space-oddity.html" class="menu-link link-space">#01 space oddity</a></li>
-            <li><a href="2ziggy-stardust.html" class="menu-link link-ziggy">#02 ziggy stardust</a></li>
-            <li><a href="3white-duke.html" class="menu-link link-duke">#03 thin white duke</a></li>
-            <li><a href="4superstar.html" class="menu-link link-super">#04 superstar</a></li>
-            <li><a href="5blackstar.html" class="menu-link link-black">#05 Blackstar</a></li>
-            </ul>
+        <div class="menu-navigation">
+            <h3 class="menu-title">COMMAND CENTER</h3>
+            
+            <div class="instruction-block">
+                <p>THE INTERFACE HAS CHANGED.</p>
+                <p>DIRECT NAVIGATION IS DEACTIVATED TO PREVENT REALITY COLLAPSE.</p>
+                <p>TO MOVE THROUGH THE ERAS, YOU MUST INTERACT WITH THE ELEMENTS ON THE SCREEN.</p>
+            </div>
+
+            <div class="menu-footer">
+                <p class="hint">LOOK FOR THE [BRACKETS]</p>
+                <p class="system-status">STATUS: STANDBY</p>
+            </div>
+        </div>
     </nav>
 </div>
     
@@ -51,12 +58,34 @@
         </a> 
 
         <nav class="header__menu">
-            <ul class="menu__list">
-                <li class="menu__item"><a href="#" class="menu__link">About</a></li>
-                <li class="menu__item"><a href="#" class="menu__link">Works</a></li>
-                <li class="menu__item"><a href="#" class="menu__link">Contacts</a></li>
-            </ul>
-        </nav>
+    <ul class="menu__list">
+        
+        <li class="menu__item">
+            <a href="#" class="menu__link">About</a>
+            <div class="dropdown-note">
+                <div class="note-arrow"></div>
+                <p>David Bowie: a cosmic shapeshifter. This interface is a tribute to his final transmission.</p>
+            </div>
+        </li>
+
+        <li class="menu__item">
+            <a href="#" class="menu__link">Works</a>
+            <div class="dropdown-note">
+                <div class="note-arrow"></div>
+                <p>Explore the eras: from Ziggy Stardust to the Thin White Duke and beyond.</p>
+            </div>
+        </li>
+
+        <li class="menu__item">
+            <a href="#" class="menu__link">Contacts</a>
+            <div class="dropdown-note">
+                <div class="note-arrow"></div>
+                <p>Ground control to major tom: reach out via the [brackets] system.</p>
+            </div>
+        </li>
+
+    </ul>
+</nav>
 
         <button class="header__btn">
             <span></span>
@@ -176,6 +205,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.location.href = '1space-oddity.html';
             }, 800);
         });
+    }
+});
+
+
+
+
+document.addEventListener('click', function(event) {
+    const menu = document.getElementById('menuOverlay');
+    const burger = document.querySelector('.header__btn'); // Твій бургер
+
+    // Перевіряємо: якщо меню відкрите ТА клік був НЕ по самому меню і НЕ по бургеру
+    if (menu.classList.contains('open') && 
+        !menu.contains(event.target) && 
+        !burger.contains(event.target)) {
+        
+        menu.classList.remove('open');
     }
 });
 
