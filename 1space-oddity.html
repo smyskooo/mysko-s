@@ -67,7 +67,116 @@
     </div>
 </div>
 
+
+
+
+<div id="lightning-container">
+    <div class="star" id="star1" style="top: 10%; left: 60%;"></div>
+    <div class="star" id="star2" style="top: 40%; left: 10%;"></div>
+    <div class="star" id="star3" style="top: 50%; left: 85%;"></div>
+    <div class="star" id="star4" style="top: 80%; left: 30%;"></div>
+    
+    <svg class="lightning-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <line x1="60" y1="10" x2="10" y2="40" class="hint-segment" />
+        <line x1="60" y1="10" x2="10" y2="40" id="line1" class="lightning-segment" />
+
+        <line x1="10" y1="40" x2="85" y2="50" class="hint-segment" />
+        <line x1="10" y1="40" x2="85" y2="50" id="line2" class="lightning-segment" />
+
+        <line x1="85" y1="50" x2="30" y2="80" class="hint-segment" />
+        <line x1="85" y1="50" x2="30" y2="80" id="line3" class="lightning-segment" />
+    </svg>
+
+    <a href="2ziggy-stardust.html" class="next-era-btn" id="next-btn">EVOLVE</a>
+</div>
+
+
+
 <script>
+
+const music = document.getElementById('epochMusic');
+const nextBtn = document.getElementById('next-btn');
+
+// Отримуємо масиви елементів
+const stars = [
+    document.getElementById('star1'),
+    document.getElementById('star2'),
+    document.getElementById('star3'),
+    document.getElementById('star4')
+];
+
+const hintLines = document.querySelectorAll('.hint-segment');
+const drawLines = [
+    document.getElementById('line1'),
+    document.getElementById('line2'),
+    document.getElementById('line3')
+];
+
+let clickedCount = 0;
+
+// 1. Логіка появи зірок та пунктиру за таймінгами
+music.addEventListener('play', () => {
+    // Таймінги появи (у мілісекундах)
+    const timings = [2000, 7000, 12000, 17000];
+
+    timings.forEach((time, index) => {
+        setTimeout(() => {
+            if (stars[index]) {
+                stars[index].classList.add('show');
+                stars[index].classList.add('pulse'); // Додаємо мерехтіння в біт
+            }
+            
+            // Показуємо пунктирну лінію, що веде ДО цієї зірки (починаючи з другої)
+            if (index > 0 && hintLines[index - 1]) {
+                hintLines[index - 1].style.opacity = "1";
+            }
+        }, time);
+    });
+}, { once: true }); // Спрацює лише один раз при першому кліку на Play
+
+// 2. Логіка кліків та малювання рожевих ліній
+stars.forEach((star, index) => {
+    star.addEventListener('click', function() {
+        // Клікати можна лише якщо зірка вже з'явилася і ще не активна
+        if (this.classList.contains('show') && !this.classList.contains('active')) {
+            this.classList.add('active');
+            clickedCount++;
+
+            // Перевіряємо з'єднання з попередньою зіркою
+            if (index > 0 && stars[index - 1].classList.contains('active')) {
+                drawLines[index - 1].classList.add('draw');
+            }
+            
+            // Перевіряємо з'єднання з наступною зіркою (якщо клікнули "не по порядку")
+            if (index < stars.length - 1 && stars[index + 1].classList.contains('active')) {
+                drawLines[index].classList.add('draw');
+            }
+
+            // Якщо всі 4 зірки активовані — показуємо кнопку переходу
+            if (clickedCount === 4) {
+                showNextButton();
+            }
+        }
+    });
+});
+
+// Функція появи кнопки
+function showNextButton() {
+    // 1. Показуємо елемент у структурі
+    nextBtn.style.display = 'block';
+
+    // 2. Через мілісекунду додаємо клас для плавного виїзду
+    setTimeout(() => {
+        nextBtn.classList.add('visible');
+    }, 100);
+    
+    console.log("Major Tom to Ground Control: Button is ready.");
+}
+
+
+
+
+
 // --- Аудіо і Анімація під Біт ---
 
 const musicBtn = document.getElementById('musicToggle');

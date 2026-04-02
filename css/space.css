@@ -207,3 +207,194 @@
         filter: blur(50px) saturate(180%);
     }
 }
+
+
+/* Контейнер на весь екран */
+#lightning-container {
+    position: relative;
+    width: 130px;  /* Розмір сузір'я */
+    height: 230px;
+    top: 60%;      /* Положення на екрані */
+    left: 40%;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+/* Базовий стан зірки — ВОНА ПРИХОВАНА */
+.star {
+    width: 12px;
+    height: 12px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 1.5s ease, transform 0.3s, box-shadow 0.3s;
+    pointer-events: auto;
+    cursor: pointer;
+    box-shadow: 0 0 10px white;
+    z-index: 2;
+    border: 1px solid #222;
+    transform: translate(-50%, -50%) scale(1) !important;
+    
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 1.5s ease;
+    
+}
+
+.star:hover {
+    /* І ТУТ ТЕЖ МАЄ БУТИ ТРАНСЛЕЙТ */
+    transform: translate(-50%, -50%) scale(1.15) !important; 
+    
+    box-shadow: 0 0 10px white !important;
+    cursor: pointer;
+    animation-play-state: paused !important;
+}
+
+.star.active:hover {
+    /* І ДЛЯ РОЖЕВОЇ ТЕЖ */
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+
+
+
+
+/* КОЛИ JS ДОДАЄ ЦЕЙ КЛАС — ЗІРКА З'ЯВЛЯЄТЬСЯ */
+.star.show { opacity: 1; }
+.star.active { background: #ff00ff; box-shadow: 0 0 20px #ff00ff; }
+
+/* Стиль блискавки */
+.lightning-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+#lightning-line {
+    stroke: #ff00ff;
+    stroke-width: 1;
+    stroke-dasharray: 500;
+    stroke-dashoffset: 500; /* Схована лінія */
+    transition: stroke-dashoffset 0.6s ease-in-out;
+    filter: drop-shadow(0 0 10px #ff00ff);
+}
+
+/* Кнопка переходу */
+
+
+.lightning-segment {
+    stroke: #ff00ff;
+    stroke-width: 2;
+    stroke-dasharray: 200;
+    stroke-dashoffset: 200;
+    transition: stroke-dashoffset 0.4s ease-in-out;
+}
+
+.lightning-segment.draw { stroke-dashoffset: 0; }
+
+.hint-segment {
+    stroke: rgba(0, 0, 0, 0.2); /* Зробимо їх тимчасово темними, щоб точно побачити */
+    stroke-width: 0.5;
+    stroke-dasharray: 2, 2;
+    opacity: 0;
+    transition: opacity 1s ease;
+    z-index: 9998; /* Трішки нижче за зірки, але вище за фон */
+}
+
+.lightning-segment {
+    stroke: #ff00ff;
+    stroke-width: 1.5;
+    fill: none;
+    stroke-dasharray: 200;
+    stroke-dashoffset: 200;
+    transition: stroke-dashoffset 0.5s ease;
+    z-index: 9999;
+}
+
+@keyframes starPulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        opacity: 0.6;
+    }
+    50% {
+        /* Дуже м'яке розширення */
+        transform: translate(-50%, -50%) scale(1.12); 
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        opacity: 0.6;
+    }
+}
+
+.star.pulse {
+    /* cubic-bezier робить початок і кінець руху максимально м'якими */
+    animation: starPulse 2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+/* Для рожевих активних зірок */
+@keyframes starPulsePink {
+    0% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 8px rgba(255, 0, 255, 0.4); }
+    50% { transform: translate(-50%, -50%) scale(1.08); box-shadow: 0 0 18px rgba(255, 0, 255, 0.7); }
+    100% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 8px rgba(255, 0, 255, 0.4); }
+}
+
+.star.active.pulse {
+    animation: starPulsePink 2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+#star2 { animation-delay: 0.5s; }
+#star3 { animation-delay: 1.2s; }
+#star4 { animation-delay: 0.8s; }
+
+
+
+
+
+#next-btn {
+    display: none; /* JS змінить на block */
+    position: fixed;
+   top: 346px;            /* Відступ зверху (можна в пікселях, наприклад 500px) */
+    left: 830px;
+    
+    padding: 9px 10px;
+    background: transparent;
+    color: rgb(0, 0, 0);
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    text-decoration: none;
+    font-family: 'Noto Sans Mono', monospace;
+    letter-spacing: 2px;
+    font-size: 13px;
+    opacity: 0;
+    transform: translateX(20px); /* Початкове зміщення вправо */
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10000;
+    pointer-events: auto;
+}
+
+/* Ефект появи (додається через JS) */
+#next-btn.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Ефект при наведенні (Hover) */
+#next-btn:hover {
+    background: rgba(253, 57, 122, 0.622);
+    color: black;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+    transform: scale(1.05);
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+/* Активний стан (при натисканні) */
+#next-btn:active {
+    transform: scale(0.95);
+}
