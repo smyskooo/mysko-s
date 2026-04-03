@@ -91,6 +91,25 @@
 </div>
 
 
+<div class="collage-container" id="main-collage">
+    
+    <img src="img/nlo.png" id="ufo-img" class="collage-ufo" alt="UFO">
+    
+    <img src="img/david-spase-box.png" id="clickable-cover" class="collage-cover pulse-effect" alt="Album Cover">
+    
+    <img src="img/plastinka.png" id="vinyl-img" class="collage-vinyl" alt="Vinyl">
+    <img src="img/moon.png" class="collage-moon" alt="Moon">
+    <img src="img/star1.png" class="collage-star" alt="Star">
+    
+</div>
+
+
+
+
+
+
+
+
 
 <script>
 
@@ -203,6 +222,32 @@ musicBtn.addEventListener('click', function() {
         visualizer.classList.remove('active'); // Ховаємо м'ятну хвилю
         musicBtn.querySelector('.play-btn__text').innerText = 'Listen to the Epoch';
         musicBtn.querySelector('.play-btn__icon').innerText = '▶';
+    }
+});
+
+
+
+
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const coverImg = document.getElementById('clickable-cover');
+    const collageBox = document.getElementById('main-collage');
+
+    if (coverImg && collageBox) {
+        coverImg.addEventListener('click', function() {
+            collageBox.classList.toggle('active');
+            
+            if (collageBox.classList.contains('active')) {
+                coverImg.classList.remove('pulse-effect');
+            } else {
+                coverImg.classList.add('pulse-effect');
+            }
+        });
     }
 });
 
