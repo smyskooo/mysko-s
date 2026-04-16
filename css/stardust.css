@@ -95,3 +95,496 @@
 .play-btn.playing .play-btn__icon {
     content: "❚❚"; /* Іконка Pause */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Контейнер для всього колажу */
+.gallery-wrapper {
+    position: fixed; /* Прив'язуємо до вікна */
+    right: 10px;
+    top: 70% !important; /* Тепер це спрацює */
+    transform: translateY(-50%);
+    width: 600px;
+    height: 700px;
+    z-index: 99;
+}
+
+
+/* ЦЕ ТЕ, ЧОГО НЕ ВИСТАЧАЛО: змушуємо вміст вписуватися в межі */
+.frame img, .trigger-card img {
+    width: 100% !important;
+    height: auto !important;
+    display: block;
+}
+
+/* Якщо у тебе є окремий контейнер для відео (плівка), теж затискаємо його */
+.iframe-container, .film-strip {
+    overflow: hidden; /* Щоб нічого не вилазило за краї */
+}
+
+/* Спільна анімація появи справа для всіх елементів */
+.frame, .trigger-card, .decor-star {
+    position: absolute;
+    opacity: 0;
+    animation: flyInRight 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes flyInRight {
+    0% {
+        opacity: 0;
+        /* Додаємо -50%, щоб він не смикався */
+        transform: translate(300px, -50%) rotate(10deg);
+    }
+    100% {
+        opacity: 1;
+        /* ТУТ МАЄ БУТИ -50%, щоб зберегти позицію top: 80% */
+        transform: translate(0, -50%) rotate(var(--rot)); 
+    }
+}
+
+/* --- КОНКРЕТНІ ПОЗИЦІЇ (як на фото) --- */
+
+/* 1. ВЕРХНІЙ ПОЛАРОЇД (Червоний Боуї) */
+.polaroid-top {
+    width: 190px;      /* ТУТ МІНЯЙ РОЗМІР */
+    height: auto;
+    top: 210px;            /* ТУТ МІНЯЙ ПОЗИЦІЮ ВІД ВЕРХУ */
+    right: 250px;       /* ТУТ МІНЯЙ ПОЗИЦІЮ ВІД КРАЮ */
+    --rot: -8deg;       /* КУТ НАХИЛУ */
+    z-index: 5;
+    animation-delay: 0.2s; /* Вилетить першим */
+}
+
+/* 2. СЕРЕДНЯ ФОТО (на скотчі) */
+.vintage-middle {
+    width: 220px;
+   height: auto;
+    top: 150px; 
+    right: 14px;  
+    --rot: 8deg;
+    z-index: 4;
+    animation-delay: 0.4s;
+}
+
+/* 3. ВІДЕО-ПЛІВКА (Нижня по центру) */
+.film-strip {
+    position: absolute;
+    width: 230px; 
+    height: 160px; /* Додав висоту для стабільності */
+    top: 350px !important; 
+    right: 100px;
+    overflow: hidden;
+    z-index: 20;
+}
+/* 4. КАРТКА ТАРО (Активатор повзунка) */
+
+/* 4. КАРТКА ТАРО (Активатор повзунка) */
+.trigger-card {
+    position: absolute !important;
+    display: block !important; /* Змушуємо її з'явитися */
+    
+    width: 60px;      /* Зробимо трохи більшою, щоб точно помітити */
+    height: auto;
+    
+    /* КЕРУВАННЯ: Чим менше числа, тим ближче до ПРАВОГО ВЕРХНЬОГО кута контейнера */
+    top: 330px !important;   
+    right: 70px !important; 
+    
+    /* Скидаємо все, що може заважати */
+    bottom: auto !important;
+    left: auto !important;
+    
+    --rot: 12deg;
+    z-index: 999;     /* Вище за все інше */
+    animation-delay: 1s;
+    cursor: pointer;
+    z-index: 1;
+    
+}
+
+/* Додамо стиль для самої картинки всередині, щоб вона не була нульовою */
+.trigger-card img {
+    width: 100%;
+    height: auto;
+    pointer-events: all;
+}
+
+
+/* --- ВІДЕО ТА ПЛІВКА --- */
+/* Правило для картинок (без відео!) */
+.frame img, .trigger-card img {
+    width: 100% !important;
+    height: auto !important;
+    display: block;
+}
+
+.film-strip {
+    position: absolute;
+    width: 230px; 
+    height: 160px; /* Додав висоту для стабільності */
+    top: 300px !important; 
+    right: 100px;
+    overflow: visible;
+    z-index: 20;
+}
+
+#ziggy-video {
+    position: absolute !important;
+    top: 50% !important;
+    left: 47% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 80% !important;  /* ОСЬ ТУТ ВОНО ЗМЕНШУЄТЬСЯ */
+    height: auto !important;
+    z-index: 9;
+}
+
+.film-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 11;
+    pointer-events: none;
+    object-fit: contain;
+}
+.play-hint {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff; font-size: 14px; text-transform: uppercase;
+    background: rgba(0,0,0,0.4); padding: 5px;
+}
+
+/* --- ЗІРКИ (дрібні деталі) --- */
+.decor-star { color: #00ced1; font-size: 24px; }
+.s1 { top: 7%; left: 30%; animation-delay: 0.8s; color: #ff4500; }
+.s2 { top: 50%; right: 20px; animation-delay: 0.9s; }
+.s3 { bottom: 35%; left: 80px; animation-delay: 1s; color: #ffd700; }
+
+/* --- ПОВЗУНОК (притиснутий вправо) --- */
+.zipper-wrapper {
+    position: fixed;
+    right: 0; top: 0;
+    height: 100vh; width: 40px;
+    display: none;
+    z-index: 1000;
+}
+.zipper-wrapper.visible { display: block; }
+.zipper-line { position: absolute; right: 10px; width: 2px; height: 100%; background: #fff; }
+.zipper-handle { position: absolute; top: 0; right: 0; width: 30px; height: 40px; background: #fff; cursor: grab; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Ефект при наведенні на саму карту */
+.trigger-card:hover {
+    /* Трохи збільшуємо і міняємо нахил, щоб вона "ожила" */
+    transform: translate(0, -50%) rotate(0deg) scale(1.1) !important;
+    z-index: 1000 !important; /* Щоб плашка точно була зверху всього */
+    transition: all 0.3s ease;
+}
+
+/* Створюємо хмаринку "Click me" */
+.trigger-card:after {
+    content: "Click me";
+    position: absolute;
+    top: -40px;      /* Позиція над картою */
+    left: 50%;
+    transform: translateX(-50%);
+    
+    /* Стиль плашки */
+    background: #fff;
+    color: #000;
+    padding: 5px 10px;
+    font-family: 'Noto Sans Mono', monospace;
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    white-space: nowrap;
+    border-radius: 4px;
+    
+    /* Початково прихована */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, top 0.3s ease;
+}
+
+/* Поворотний хвостик хмаринки */
+.trigger-card:before {
+    content: "";
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 8px 8px 0 8px;
+    border-style: solid;
+    border-color: #fff transparent transparent transparent;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Показуємо хмаринку при наведенні */
+.trigger-card:hover:after,
+.trigger-card:hover:before {
+    opacity: 1;
+    top: -45px; /* Плашка трохи підстрибує вгору */
+}
+
+
+
+/* 1. Стан при наведенні: ТІЛЬКИ міняємо z-index, щоб плашка була зверху */
+.film-strip:hover {
+    z-index: 100 !important;
+    cursor: pointer !important;
+    /* transform НЕ ПИШЕМО ВЗАГАЛІ, щоб не було конфлікту з анімацією */
+}
+
+/* 2. Поява підказки (плашки) */
+.film-strip:hover:after {
+    opacity: 1 !important;
+    visibility: visible !important;
+    top: -45px !important; /* Плашка випливає */
+}
+
+.film-strip:hover:before {
+    opacity: 1 !important;
+    visibility: visible !important;
+    top: -15px !important; /* Хвостик випливає */
+}
+
+/* 3. Сама плашка (переконайся, що тут теж немає зайвих рухів) */
+.film-strip:after {
+    content: "click on a memory and relive the moment";
+    position: absolute !important;
+    top: -20px !important; /* Початкова точка нижче, щоб плавно випливла */
+    left: 50% !important;
+    transform: translateX(-50%) !important; /* Тільки центрування по горизонталі */
+    
+    background: #ffffff !important;
+    color: #000000 !important;
+    padding: 5px 12px !important;
+    font-family: 'Noto Sans Mono', monospace !important;
+    font-size: 10px !important;
+    font-weight: bold !important;
+    text-transform: uppercase !important;
+    white-space: nowrap !important;
+    border-radius: 4px !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3) !important;
+    
+    opacity: 0 !important;
+    visibility: hidden !important;
+    z-index: 110 !important;
+    transition: all 0.3s ease-in-out !important; /* Плавність появи */
+}
+
+/* 4. Хвостик хмаринки */
+.film-strip:before {
+    content: "" !important;
+    position: absolute !important;
+    top: -5px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    border-width: 6px 6px 0 6px !important;
+    border-style: solid !important;
+    border-color: #ffffff transparent transparent transparent !important;
+    
+    opacity: 0 !important;
+    visibility: hidden !important;
+    z-index: 110 !important;
+    transition: all 0.3s ease-in-out !important;
+}
+
+
+
+/* Сама м'ятна хвиля — тепер це ВЕРТИКАЛЬНА смуга зліва */
+.mint-wave {
+    position: absolute;
+    /* Міняємо width і height місцями, щоб хвиля була горизонтальною */
+    width: 100vw; 
+    height: 35vh; /* Висота самої смуги */
+    
+    left: 0;
+    bottom: -35vh; /* Ховаємо ПОВНІСТЮ за нижній край екрана */
+    top: auto;    /* Відміняємо top, якщо він був */
+
+    /* Міняємо градієнт: тепер він іде знизу (насичений) до верху (прозорий) */
+    background: linear-gradient(to top, 
+        rgba(215, 10, 75, 0.4) 0%, 
+        rgba(255, 152, 198, 0.2) 50%, 
+        rgba(255, 152, 209, 0) 100%
+    ) !important;
+
+    filter: blur(30px);
+    opacity: 0;
+    transition: transform 4s cubic-bezier(0.4, 0, 0.2, 1), opacity 3s ease;
+}
+
+/* Коли музика активна, смуга стає видимою */
+.beat-visualizer.active .mint-wave {
+    opacity: 1;
+    
+    /* ЗАПУСКАЄМО АНІМАЦІЮ «ДИХАННЯ» ТА РУХУ */
+    animation: 
+        spaceBreath 1.0s infinite alternate cubic-bezier(0.4, 0, 0.2, 1), /* Глибоке дихання */
+        spaceDriftVertical 15s infinite linear; /* Легке плавання вгору-вниз */
+}
+
+/* --- ОНОВЛЕНІ АНІМАЦІЇ ДЛЯ ГЛИБИНИ --- */
+
+/* Анімація «Дихання» під біт (змінюємо ширину та яскравість) */
+/* Коли музика активна, піднімаємо хвилю */
+.beat-visualizer.active .mint-wave {
+    opacity: 1;
+    animation: 
+        spaceBreathVertical 1.5s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes spaceBreathVertical {
+    0% {
+        transform: translateY(0); /* Хвиля ледь показується знизу */
+        opacity: 0.4;
+        filter: blur(30px) saturate(120%);
+    }
+    100% {
+        /* Піднімаємо хвилю вгору на 30% висоти екрана */
+        transform: translateY(-30vh); 
+        opacity: 0.8;
+        filter: blur(50px) saturate(180%);
+    }
+}
+
+
+
+
+
+/* --- 1. ТІНІ ТА ЗАГАЛЬНІ НАЛАШТУВАННЯ ДЛЯ ВСІХ ФОТО --- */
+.polaroid-top, 
+.vintage-middle, 
+.trigger-card, 
+.film-strip {
+    /* Замість box-shadow використовуємо drop-shadow */
+    filter: drop-shadow(4px 10px 10px rgba(0,0,0,0.5));
+    box-shadow: none !important; /* Вимикаємо стару прямокутну тінь */
+}
+
+/* --- 2. КАРТКА ТАРО (Оновлений ховер з тінню) --- */
+.trigger-card:hover {
+    /* Карта трохи збільшується і стає рівно */
+    transform: translate(0, -50%) rotate(0deg) scale(1.08) !important;
+    z-index: 1000 !important;
+    /* Тінь стає глибшою, ніби карта піднялася */
+    box-shadow: 8px 20px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* --- 3. ВІДЕО-ПЛІВКА (Стабільний ховер без підстрибування) --- */
+
+/* --- 4. ПІДКАЗКИ-ХМАРИНКИ (Для Карти та Відео) --- */
+
+/* Спільні стилі для обох підказок */
+.trigger-card:after, .film-strip:after {
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    padding: 5px 12px !important;
+    font-family: 'Noto Sans Mono', monospace !important;
+    font-size: 10px !important;
+    font-weight: bold !important;
+    text-transform: uppercase !important;
+    white-space: nowrap !important;
+    border-radius: 4px !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3) !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: all 0.3s ease-in-out !important;
+    z-index: 110 !important;
+}
+
+/* Спільні стилі для хвостиків */
+.trigger-card:before, .film-strip:before {
+    content: "" !important;
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    border-width: 6px 6px 0 6px !important;
+    border-style: solid !important;
+    border-color: #ffffff transparent transparent transparent !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: all 0.3s ease-in-out !important;
+    z-index: 110 !important;
+}
+
+/* Конкретні фрази */
+.trigger-card:after { content: "Click me"; top: -20px !important; }
+.film-strip:after { content: "click on a memory and relive the moment"; top: -20px !important; }
+
+.trigger-card:before { top: -5px !important; }
+.film-strip:before { top: -5px !important; }
+
+/* Активація підказок при наведенні */
+.trigger-card:hover:after, .film-strip:hover:after {
+    opacity: 1 !important;
+    visibility: visible !important;
+    top: -45px !important;
+}
+
+.trigger-card:hover:before, .film-strip:hover:before {
+    opacity: 1 !important;
+    visibility: visible !important;
+    top: -15px !important;
+}
+
+/* --- 5. ФІКС ВІДЕО (щоб не вилазило) --- */
+.film-strip {
+    overflow: visible !important; /* Щоб бачити хмаринку */
+}
+
+#ziggy-video {
+    /* Ледь заокруглюємо відео, щоб воно м'яко лягло в рамку */
+    border-radius: 2px;
+}
+
+
+
+
+

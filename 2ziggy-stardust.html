@@ -64,6 +64,46 @@
     </div>
 </div>
 
+<div class="ziggy-container">
+    <div class="gallery-wrapper" id="gallery">
+        <div class="frame polaroid-top">
+            <img src="img/pink-ziggy.png" alt="Ziggy Top">
+        </div>
+
+        <div class="frame vintage-middle">
+            <img src="img/red-ziggy.png" alt="Ziggy Middle">
+        </div>
+
+        <div class="frame film-strip" id="video-trigger">
+            <video muted loop playsinline id="ziggy-video">
+                <source src="video/ziggy-video.mp4" type="video/mp4">
+            </video>
+            <img src="img/frame-video.png" class="film-overlay" alt="Film Frame">
+            <div class="play-hint">click to live</div>
+        </div>
+
+        <div class="trigger-card" id="activate-zipper">
+            <img src="img/taro.png" alt="Tarot Trigger">
+        </div>
+
+        <div class="decor-star s1">★</div>
+        <div class="decor-star s2">★</div>
+        <div class="decor-star s3">★</div>
+    </div>
+</div>
+
+<div class="zipper-wrapper" id="zipper-trigger">
+    <div class="zipper-line"></div>
+    <div class="zipper-handle"><span>⤋</span></div>
+</div>
+
+
+
+
+
+
+
+
 
 
 
@@ -106,6 +146,129 @@ musicBtn.addEventListener('click', function() {
         musicBtn.querySelector('.play-btn__icon').innerText = '▶';
     }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// === 1. ВІДЕО (ОЖИВЛЕННЯ) ===
+const vTrigger = document.getElementById('video-trigger');
+const video = document.getElementById('ziggy-video');
+
+if (vTrigger && video) {
+    vTrigger.addEventListener('click', () => {
+        if (video.paused) {
+            video.play();
+            const hint = vTrigger.querySelector('.play-hint');
+            if (hint) hint.style.opacity = '0';
+        } else {
+            video.pause();
+            const hint = vTrigger.querySelector('.play-hint');
+            if (hint) hint.style.opacity = '1';
+        }
+    });
+}
+
+// === 2. ПОВЗУНОК (ПОЯВА ТА ТЯГУЧІСТЬ) ===
+const handle = document.querySelector('.zipper-handle');
+const zipper = document.querySelector('.zipper-wrapper');
+const cardTrigger = document.getElementById('activate-zipper');
+let isDragging = false;
+
+// Поява блискавки при кліку на картку
+if (cardTrigger && zipper) {
+    cardTrigger.addEventListener('click', () => {
+        zipper.classList.add('visible');
+    });
+}
+
+// Функція руху
+function moveZipper(e) {
+    if (!isDragging) return;
+
+    let clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    let height = window.innerHeight;
+    let percentage = (clientY / height) * 100;
+
+    if (percentage >= 0 && percentage <= 95) {
+        handle.style.top = percentage + '%';
+        // Ефект знебарвлення сторінки (необов'язково, але стильно)
+        document.body.style.filter = `grayscale(${percentage / 100})`;
+    }
+
+    if (percentage > 90) {
+        isDragging = false;
+        document.body.style.transform = "translateY(100vh)";
+        document.body.style.transition = "transform 0.8s ease-in";
+        
+        setTimeout(() => {
+            window.location.href = '3white-duke.html'; 
+        }, 700);
+    }
+}
+
+// Слухачі подій для миші та тачпада
+if (handle) {
+    handle.addEventListener('mousedown', () => { 
+        isDragging = true; 
+        handle.style.cursor = 'grabbing'; 
+    });
+    handle.addEventListener('touchstart', (e) => { 
+        isDragging = true; 
+    }, {passive: true});
+
+    window.addEventListener('mousemove', moveZipper);
+    window.addEventListener('touchmove', moveZipper, {passive: false});
+
+    window.addEventListener('mouseup', () => { 
+        isDragging = false; 
+        handle.style.cursor = 'grab'; 
+    });
+    window.addEventListener('touchend', () => { 
+        isDragging = false; 
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </script>
 
