@@ -1,8 +1,9 @@
 .era-num {
     position: fixed;
-    top: 40px;      /* Можеш підправити під свій хедер */
-    right: 60px;    /* Чітко в кутку */
+    top: 7.3vh;      /* Можеш підправити під свій хедер */
+    right: 5vw;    /* Чітко в кутку */
     font-family: 'Noto Sans Mono', monospace;
+    font-size: 1.6vw;
     font-weight: 700;
     letter-spacing: 2px;
     z-index: 1000;
@@ -27,20 +28,21 @@
 
 /* Сама "коробка" з текстом */
 .text-block {
-    width: 380px;            /* Ширина текстової колонки */
-    margin-right: 90px;     /* Відступ від правого краю екрана */
+    width: 35vw;            /* Ширина текстової колонки */
+    
+    margin-right: 10vw;     /* Відступ від правого краю екрана */
     display: flex;
     flex-direction: column;
     align-items: flex-start; /* ВСЕ ВСЕРЕДИНІ РІВНЯЄМО ПО ЛІВОМУ КРАЮ */
     text-align: left;        /* Текст читається зліва направо */
-    padding-top: 35px;
+    padding-top: 2.6vh;
     pointer-events: auto;    /* Повертаємо можливість клікати по кнопках */
 }
 
 /* Твої стилі заголовків та кнопок */
 .era-title {
     font-family: 'Noto Sans Mono', monospace;
-    font-size: 30px;
+    font-size: 2.6vw;
     font-weight: 700;
     line-height: 0.9;
     margin: 0 0 10px 0;
@@ -48,15 +50,15 @@
 }
 
 .era-subtitle {
-    font-size: 16px;
-    margin-bottom: 17px;
+    font-size: 1.3vw;
+    margin-bottom: 1.2vh;
     opacity: 0.8;
 }
 
 .era-text {
-    font-size: 14px;
+    font-size: 1.3vw;
     line-height: 1.6;
-    margin-bottom: 25px;
+    margin-bottom: 1.8vh;
 }
 
 
@@ -67,14 +69,14 @@
 .play-btn {
     display: flex;
     align-items: center;
-    gap: 15px;
-    padding: 10px 20px;
+    gap: 1.9vw;
+    padding: 1vw 2vw;
     background: transparent;
     border: 2px solid #08693f; /* Біла рамка, як у колажів */
     color: #08693f;
     border-radius: 4px;
     font-family: 'Noto Sans Mono', monospace;
-    font-size: 13px;
+    font-size: 1vw;
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -212,18 +214,18 @@
 /* Контейнер на весь екран */
 #lightning-container {
     position: relative;
-    width: 120px;  /* Розмір сузір'я */
-    height: 230px;
-    top: 60%;      /* Положення на екрані */
-    left: 5%;
+    width: 8vw;  /* Розмір сузір'я */
+    height: 21vw;
+    top: 1vh;      /* Положення на екрані */
+    left: 7vw;
     z-index: 9999;
     pointer-events: none;
 }
 
 /* Базовий стан зірки — ВОНА ПРИХОВАНА */
 .star {
-    width: 8px;
-    height: 8px;
+    width: 0.9vw;
+    height: 0.9vw;
     background: white;
     border-radius: 50%;
     position: absolute;
@@ -359,10 +361,10 @@
 #next-btn {
     display: none; /* JS змінить на block */
     position: fixed;
-   top: 346px;            /* Відступ зверху (можна в пікселях, наприклад 500px) */
-    left: 830px;
+   top: 68vh;            /* Відступ зверху (можна в пікселях, наприклад 500px) */
+    left: 78vw;
     
-    padding: 9px 10px;
+    padding: 0.8vw 1vw;
     background: transparent;
     color: rgb(0, 0, 0);
     border: 2px solid rgba(0, 0, 0, 0.5);
@@ -370,7 +372,7 @@
     text-decoration: none;
     font-family: 'Noto Sans Mono', monospace;
     letter-spacing: 2px;
-    font-size: 13px;
+    font-size: 1.2vw;
     opacity: 0;
     transform: translateX(20px); /* Початкове зміщення вправо */
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -412,18 +414,18 @@
 /* 1. КОНТЕЙНЕР (має бути достатньо високим, щоб бачити виліт НЛО) */
 .collage-container {
     position: relative;
-    width: 300px;
-    height: 400px;
-    margin-top: -275px;
-    margin-left: 50px;
+    width: 22vw;
+    height: 29vw;
+    margin-top: -56vh;
+    margin-left: 7vw;
 }
 
 /* 2. ОБКЛАДИНКА */
 .collage-cover {
     position: absolute !important;
-    top: 100px !important; /* Трохи опустив для балансу */
-    left: 50px !important; 
-    width: 250px !important;
+    top: 20vh !important; /* Трохи опустив для балансу */
+    left: 10vh !important; 
+    width: 24vw !important;
     z-index: 10 !important; /* Завжди зверху НЛО та платівки */
     cursor: pointer;
 
@@ -457,9 +459,9 @@
 /* 3. ПЛАТІВКА */
 .collage-vinyl {
     position: absolute;
-    top: 110px;
-    left: 60px;
-    width: 230px;
+    top: 23vh;
+    left: 5.7vw;
+    width: 22.11vw;
     z-index: 5;
     opacity: 0;
     transition: all 0.7s ease-out;
@@ -474,9 +476,9 @@
 .collage-ufo {
     position: absolute;
     /* Позиціонуємо точно під центром обкладинки */
-    top: 130px; 
-    left: 90px;
-    width: 145px;
+    top: 19vh; 
+    left: 8.6vw;
+    width: 13.9vw;
     z-index: 1; /* Найнижчий шар (позаду всього) */
     opacity: 0;
     transition: all 1s cubic-bezier(0.25, 0.1, 0.25, 1); /* Плавний зліт */
@@ -485,7 +487,7 @@
 /* Виліт НЛО з-під обкладинки вгору */
 .collage-container.active .collage-ufo {
     opacity: 1;
-    top: -20px; /* Вилітає вгору за межі обкладинки */
+    top: -1.9vh; /* Вилітає вгору за межі обкладинки */
     transform: scale(1.05); /* Трохи збільшується для ефекту наближення */
     
 }
@@ -504,9 +506,9 @@
 /* --- 1. МІСЯЦЬ (Найнижчий шар) --- */
 .collage-moon {
     position: absolute;
-    top: 150px; /* Початкова точка за центром обкладинки */
-    left: 100px;
-    width: 150px;
+    top: 14.4vw; /* Початкова точка за центром обкладинки */
+    left: 9.6vw;
+    width: 14.4vw;
     z-index: 1; /* Глибше за НЛО та вініл */
     opacity: 0;
     filter: drop-shadow(0 0 15px rgba(0,0,0,0.3)); /* М'яка тінь */
@@ -522,9 +524,9 @@
 /* --- 2. ЗІРОЧКА (Маленька, вилітає вниз) --- */
 .collage-star {
     position: absolute;
-    top: 180px;
-    left: 150px;
-    width: 30px; /* Маленька */
+    top: 17.3vw;
+    left: 14.4vw;
+    width: 3vw; /* Маленька */
     z-index: 2; /* Трохи вище обкладинки для об'єму */
     opacity: 0;
     filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));

@@ -19,7 +19,7 @@ body, html {
     left: 0;
     width: 100%;
     z-index: 1000;
-    padding: 20px 60px; /* Відступи від країв екрана */
+    padding: 1.4vw 4.3vw; /* Відступи від країв екрана */
 }
 
 .header-content {
@@ -39,7 +39,7 @@ body, html {
 
 /* Сама картинка-логотип */
 .header__logo-img {
-    height: 55px; /* Задаємо чітку висоту, ширина підлаштується автоматично */
+    height: 12vh; /* Задаємо чітку висоту, ширина підлаштується автоматично */
     width: auto;
     object-fit: contain; /* Щоб картинка не сплющилася */
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Додамо легку анімацію при наведенні */
@@ -54,21 +54,21 @@ body, html {
 .header__menu {
     /* margin-right задає відстань від бургера. 
        Збільшимо її, щоб меню "втекло" лівіше до логотипу */
-  margin-right: 60px;
+  margin-right: 4.3vw;
 }
 
 .menu__list {
     display: flex;
     list-style: none;
-    gap: 30px; /* Відстань між About, Works, Info */
-    gap: 40px;
+    gap: 2.1vw; /* Відстань між About, Works, Info */
+    gap: 2.9vw;
     margin: 0;
     padding: 0;
 }
 
 .menu__link {
     font-family: 'Noto Sans Mono', monospace;
-    font-size: 13px;
+    font-size: 1.3vw;
     font-weight: 500;
     text-transform: uppercase;
     text-decoration: none;
@@ -97,10 +97,10 @@ body, html {
     left: 50%;
     transform: translateX(-50%) translateY(10px);
     
-    width: 200px;
+    width: 16vw;
     background: #f7f4ea; /* Твій бежевий фон */
     border: 1px solid #000; /* Тонка чорна рамка як на малюнку */
-    padding: 15px;
+    padding: 1.5vw;
     
     /* Приховано за замовчуванням */
     opacity: 0;
@@ -120,7 +120,7 @@ body, html {
 /* 4. Текст всередині нотатки */
 .dropdown-note p {
     font-family: 'Noto Sans Mono', monospace;
-    font-size: 11px;
+    font-size: 1vw;
     line-height: 1.5;
     color: #000;
     text-transform: uppercase;
@@ -134,8 +134,8 @@ body, html {
     top: -6px; /* Виносимо на рамку */
     left: 50%;
     transform: translateX(-50%) rotate(45deg);
-    width: 10px;
-    height: 10px;
+    width: 1.2vw;
+    height: 1.2vw;
     background: #f7f4ea;
     border-top: 1px solid #000;
     border-left: 1px solid #000;
@@ -145,10 +145,10 @@ body, html {
 .dropdown-note::before {
     content: '';
     position: absolute;
-    top: -25px;
+    top: -1.8vh;
     left: 0;
     width: 100%;
-    height: 25px;
+    height: 1.8vh;
 }
 
 
@@ -193,7 +193,7 @@ body, html {
     left: 0;
     width: 100%;
     height: auto;
-    margin-bottom: -15px;
+    margin-bottom: 0;
     z-index: 1;
     display: block;
     filter: drop-shadow(0 0 10px rgba(45, 3, 255, 0.4));
@@ -206,8 +206,8 @@ body, html {
     right: 0;
 
     /* Розміри */
-    width: 45px; 
-    height: 12px; /* Це дасть простір між лініями */
+    width: 4.5vw; 
+    height: 1vw; /* Це дасть простір між лініями */
     
     display: flex;
     flex-direction: column;
@@ -242,15 +242,15 @@ body, html {
 
 .top__content {
     position: absolute;
-    top: 65%;
+    top: 65vh;
     transform: translateY(-50%);
-    font-size: 12px;
+    font-size: 1.2vw;
     
-    right: 60px;           /* Відступ від правого краю */
+    right: 4.3vw;           /* Відступ від правого краю */
     
     /* Замість left використовуємо ширину */
-    width: 40%;          /* Блок займає праву половину екрана */
-    max-width: 600px;    /* Щоб на надвеликих моніторах текст не втік занадто далеко вліво */
+    width: 40vw;          /* Блок займає праву половину екрана */
+    max-width: 43.9vw;    /* Щоб на надвеликих моніторах текст не втік занадто далеко вліво */
     
     text-align: right;
     display: flex;
@@ -288,7 +288,7 @@ body, html {
 
 .ticker {
     position: absolute;
-    bottom: 14px;
+    bottom: 1.3vw;
     left: 0;
     width: 100%;
     background-color: transparent;
@@ -304,7 +304,7 @@ body, html {
 
 .ticker__item {
     font-family: 'Noto Sans Mono', monospace;
-    font-size: 13px;
+    font-size: 1vw;
     font-weight: 700;
     color: #000;
     text-transform: uppercase;
@@ -344,12 +344,12 @@ body, html {
 /* Сама плашка з текстом загадки */
 .hint-popup {
     position: absolute;
-    bottom: 40px;
+    bottom: 3vw;
     left: 0;
-    width: 250px;
+    width: 18.3vw;
     background: #000;
     color: #98ff98;
-    padding: 15px;
+    padding: 1.5vw;
     font-size: 0.8rem;
     line-height: 1.4;
     opacity: 0;
@@ -371,7 +371,7 @@ body, html {
     width: 100%;
     
     /* ОСЬ ЦЕЙ ПАРАМЕТР КРУТИ: */
-    margin-top: 17px; /* Чим більше число, тим нижче впаде підказка */
+    margin-top: 1.6vh; /* Чим більше число, тим нижче впаде підказка */
     
     position: relative;
     z-index: 10;
@@ -386,7 +386,7 @@ body, html {
     font-family: 'Noto Sans Mono', monospace;
     
     /* ОСЬ ТУТ МІНЯЙ РОЗМІР */
-    font-size: 20px;
+    font-size: 2vw;
     font-weight: 700;
 }
 
@@ -548,8 +548,8 @@ body.is-space-active svg {
 /* --- СТИЛІ ДЛЯ ЗІРКИ (Вона з'являється) --- */
 .space-star {
     position: fixed; /* Завжди на екрані */
-    top: 47%;
-    left: 89%;
+    top: 48vh;
+    left: 90vw;
     transform: translate(-50%, -50%) scale(0); /* Спочатку прихована (scale 0) */
     z-index: 9999; /* Поверх усього */
     cursor: pointer;
@@ -567,8 +567,8 @@ body.is-space-active .space-star {
 
 /* Розмір самої зірки */
 .space-star svg {
-    width: 35px;
-    height: 35px;
+    width: 3vw;
+    height: 3vw;
     fill: #000; /* Колір зірки (після інверсії буде білим) */
 }
 
@@ -599,5 +599,6 @@ body.is-space-active .space-star:hover {
 }
 
 
-/* --- НОВЕ МЕНЮ-ІНСТРУКЦІЯ (COMMAND CENTER) --- */
+
+
 

@@ -1,8 +1,9 @@
 .era-num {
     position: fixed;
-    top: 40px;      /* Можеш підправити під свій хедер */
-    right: 60px;    /* Чітко в кутку */
+    top: 7.3vh;      /* Можеш підправити під свій хедер */
+    right: 5vw;    /* Чітко в кутку */
     font-family: 'Noto Sans Mono', monospace;
+    font-size: 1.6vw;
     font-weight: 700;
     letter-spacing: 2px;
     z-index: 1000;
@@ -22,22 +23,22 @@
 
 /* Сама "коробка" з текстом */
 .text-block {
-    width: 430px;            /* Ширина текстової колонки */
-    margin-right: 500px;     /* Відступ від правого краю екрана */
-    margin-left: 100px;
-    margin-top: 15px;
+    width: 41.3vw;            /* Ширина текстової колонки */
+    margin-right: 48vw;     /* Відступ від правого краю екрана */
+    margin-left: 9.6vw;
+    margin-top: 3.4vh;
     display: flex;
     flex-direction: column;
     align-items: flex-start; /* ВСЕ ВСЕРЕДИНІ РІВНЯЄМО ПО ЛІВОМУ КРАЮ */
     text-align: left;        /* Текст читається зліва направо */
-    padding-top: 35px;
+    padding-top: 3.3vw;
     pointer-events: auto;    /* Повертаємо можливість клікати по кнопках */
 }
 
 /* Твої стилі заголовків та кнопок */
 .era-title {
     font-family: 'Noto Sans Mono', monospace;
-    font-size: 30px;
+    font-size: 2.6vw;
     font-weight: 700;
     line-height: 0.9;
     margin: 0 0 10px 0;
@@ -45,16 +46,17 @@
 }
 
 .era-subtitle {
-    font-size: 16px;
-    margin-bottom: 17px;
+    font-size: 1.3vw;
+    margin-bottom: 1.2vh;
     opacity: 0.8;
 }
 
 .era-text {
-    font-size: 14px;
+    font-size: 1.3vw;
     line-height: 1.6;
-    margin-bottom: 25px;
+    margin-bottom: 1.8vh;
 }
+
 
 
 
@@ -73,14 +75,14 @@
 .play-btn {
     display: flex;
     align-items: center;
-    gap: 15px;
-    padding: 10px 20px;
+   gap: 1.9vw;
+    padding: 1vw 2vw;
     background: transparent;
     border: 2px solid hsl(345, 86%, 35%); /* Біла рамка, як у колажів */
     color: hsl(345, 86%, 35%);
     border-radius: 4px;
     font-family: 'Noto Sans Mono', monospace;
-    font-size: 13px;
+    font-size: 1vw;
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -121,11 +123,11 @@
 /* Контейнер для всього колажу */
 .gallery-wrapper {
     position: fixed; /* Прив'язуємо до вікна */
-    right: 10px;
-    top: 70% !important; /* Тепер це спрацює */
+    right: 2vw;
+    top: 32vw !important; /* Тепер це спрацює */
     transform: translateY(-50%);
-    width: 600px;
-    height: 700px;
+    width: 57.6vw;
+    height: 67.3vw;
     z-index: 99;
 }
 
@@ -166,10 +168,10 @@
 
 /* 1. ВЕРХНІЙ ПОЛАРОЇД (Червоний Боуї) */
 .polaroid-top {
-    width: 190px;      /* ТУТ МІНЯЙ РОЗМІР */
+    width: 18.3vw;      /* ТУТ МІНЯЙ РОЗМІР */
     height: auto;
-    top: 210px;            /* ТУТ МІНЯЙ ПОЗИЦІЮ ВІД ВЕРХУ */
-    right: 250px;       /* ТУТ МІНЯЙ ПОЗИЦІЮ ВІД КРАЮ */
+    top: 20.1vw;            /* ТУТ МІНЯЙ ПОЗИЦІЮ ВІД ВЕРХУ */
+    right: 24vw;       /* ТУТ МІНЯЙ ПОЗИЦІЮ ВІД КРАЮ */
     --rot: -8deg;       /* КУТ НАХИЛУ */
     z-index: 5;
     animation-delay: 0.2s; /* Вилетить першим */
@@ -177,10 +179,10 @@
 
 /* 2. СЕРЕДНЯ ФОТО (на скотчі) */
 .vintage-middle {
-    width: 220px;
+    width: 21.1vw;
    height: auto;
-    top: 150px; 
-    right: 14px;  
+    top: 14.4vw; 
+    right: 1.3vw;  
     --rot: 8deg;
     z-index: 4;
     animation-delay: 0.4s;
@@ -189,10 +191,10 @@
 /* 3. ВІДЕО-ПЛІВКА (Нижня по центру) */
 .film-strip {
     position: absolute;
-    width: 230px; 
-    height: 160px; /* Додав висоту для стабільності */
-    top: 350px !important; 
-    right: 100px;
+    width: 22.1vw; 
+    height: 160vw; /* Додав висоту для стабільності */
+    top: 33.6vw !important; 
+    right: 9.6vw;
     overflow: hidden;
     z-index: 20;
 }
@@ -203,12 +205,12 @@
     position: absolute !important;
     display: block !important; /* Змушуємо її з'явитися */
     
-    width: 60px;      /* Зробимо трохи більшою, щоб точно помітити */
+    width: 5.7vw;      /* Зробимо трохи більшою, щоб точно помітити */
     height: auto;
     
     /* КЕРУВАННЯ: Чим менше числа, тим ближче до ПРАВОГО ВЕРХНЬОГО кута контейнера */
-    top: 330px !important;   
-    right: 70px !important; 
+    top: 31.7vw !important;   
+    right: 6.7vw !important; 
     
     /* Скидаємо все, що може заважати */
     bottom: auto !important;
@@ -240,10 +242,10 @@
 
 .film-strip {
     position: absolute;
-    width: 230px; 
-    height: 160px; /* Додав висоту для стабільності */
-    top: 300px !important; 
-    right: 100px;
+    width: 22.1vw; 
+    height: 15.3vw; /* Додав висоту для стабільності */
+    top: 28.8vw !important; 
+    right: 9.6vw;
     overflow: visible;
     z-index: 20;
 }
@@ -274,16 +276,16 @@
 }
 
 /* --- ЗІРКИ (дрібні деталі) --- */
-.decor-star { color: #00ced1; font-size: 24px; }
-.s1 { top: 7%; left: 30%; animation-delay: 0.8s; color: #ff4500; }
-.s2 { top: 50%; right: 20px; animation-delay: 0.9s; }
-.s3 { bottom: 35%; left: 80px; animation-delay: 1s; color: #ffd700; }
+.decor-star { color: #00ced1; font-size: 2.3vw; }
+.s1 { top: 4vw; left: 32vw; animation-delay: 0.8s; color: #ff4500; }
+.s2 { top: 87vh; right: 1.9vw; animation-delay: 0.9s; }
+.s3 { bottom: 27vw; left: 7.6vw; animation-delay: 1s; color: #ffd700; }
 
 /* --- ПОВЗУНОК (притиснутий вправо) --- */
 .zipper-wrapper {
     position: fixed;
     right: 0; top: 0;
-    height: 100vh; width: 40px;
+    height: 100vh; width: 3.6vw;
     display: none;
     z-index: 1000;
 }

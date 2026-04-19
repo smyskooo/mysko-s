@@ -93,3 +93,68 @@
     content: "❚❚"; /* Іконка Pause */
 }
 
+
+
+
+
+
+
+
+
+/* Сама м'ятна хвиля — тепер це ВЕРТИКАЛЬНА смуга зліва */
+.mint-wave {
+    position: absolute;
+    /* Міняємо width і height місцями, щоб хвиля була горизонтальною */
+    width: 100vw; 
+    height: 35vh; /* Висота самої смуги */
+    
+    left: 0;
+    bottom: -35vh; /* Ховаємо ПОВНІСТЮ за нижній край екрана */
+    top: auto;    /* Відміняємо top, якщо він був */
+
+    /* Міняємо градієнт: тепер він іде знизу (насичений) до верху (прозорий) */
+    background: linear-gradient(to top, 
+        rgba(255, 255, 255, 0.4) 0%, 
+        rgba(160, 159, 160, 0.2) 50%, 
+        rgba(102, 101, 102, 0) 100%
+    ) !important;
+
+    filter: blur(30px);
+    opacity: 0;
+    transition: transform 4s cubic-bezier(0.4, 0, 0.2, 1), opacity 3s ease;
+}
+
+/* Коли музика активна, смуга стає видимою */
+.beat-visualizer.active .mint-wave {
+    opacity: 1;
+    
+    /* ЗАПУСКАЄМО АНІМАЦІЮ «ДИХАННЯ» ТА РУХУ */
+    animation: 
+        spaceBreath 1.0s infinite alternate cubic-bezier(0.4, 0, 0.2, 1), /* Глибоке дихання */
+        spaceDriftVertical 15s infinite linear; /* Легке плавання вгору-вниз */
+}
+
+/* --- ОНОВЛЕНІ АНІМАЦІЇ ДЛЯ ГЛИБИНИ --- */
+
+/* Анімація «Дихання» під біт (змінюємо ширину та яскравість) */
+/* Коли музика активна, піднімаємо хвилю */
+.beat-visualizer.active .mint-wave {
+    opacity: 1;
+    animation: 
+        spaceBreathVertical 1.5s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes spaceBreathVertical {
+    0% {
+        transform: translateY(0); /* Хвиля ледь показується знизу */
+        opacity: 0.4;
+        filter: blur(30px) saturate(120%);
+    }
+    100% {
+        /* Піднімаємо хвилю вгору на 30% висоти екрана */
+        transform: translateY(-30vh); 
+        opacity: 0.8;
+        filter: blur(50px) saturate(180%);
+    }
+}
+
