@@ -62,6 +62,71 @@
     </div>
 </div>
 
+
+
+
+<section class="duke-era">
+    <div class="side-collage">
+        <img src="img/ch-david3.png" alt="Bowie History">
+    </div>
+
+    <div class="main-frame">
+        <div class="photo-smoke-wrapper">
+            <img src="img/ch-david2.png" alt="Thin White Duke Smoke" class="smoke-pic">
+            <video autoplay loop muted playsinline class="cigarette-smoke-video">
+        <source src="video/smoke.mp4" type="video/mp4">
+    </video>
+
+    
+        </div>
+
+        <div class="photo-transition-wrapper">
+            <img src="img/ch-david1.png" alt="Duke Transition" class="transition-pic">
+            <div id="shadowTrigger" class="living-shadow">
+                <span class="shadow-text">LET'S DANCE! ></span>
+            </div>
+        </div>
+    </div>
+    <div class="side-pic-right">
+    <img src="img/ch-david4.png" alt="Bowie Balance Pic">
+</div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <script>
 // --- Аудіо і Анімація під Біт ---
 
@@ -91,6 +156,88 @@ musicBtn.addEventListener('click', function() {
         musicBtn.querySelector('.play-btn__icon').innerText = '▶';
     }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const shadowBtn = document.getElementById('shadowTrigger');
+
+shadowBtn.addEventListener('click', () => {
+    // Додаємо візуальний ефект перед переходом
+    shadowBtn.style.transform = 'scale(10)'; 
+    shadowBtn.style.opacity = '0';
+
+    // Сама команда переходу на інший файл
+    setTimeout(() => {
+        window.location.href = '4superstar.html'; // ПИШИ ТУТ НАЗВУ СВОГО ФАЙЛУ
+    }, 800);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const canvas = document.getElementById('smokeCanvas');
+const ctx = canvas.getContext('2d');
+
+canvas.width = 200;
+canvas.height = 300;
+
+let particles = [];
+
+class Particle {
+    constructor() {
+        this.x = canvas.width / 2; // Точка вильоту (центр)
+        this.y = canvas.height - 20;
+        this.size = Math.random() * 5 + 2;
+        this.speedY = Math.random() * -1 - 0.5;
+        this.speedX = Math.random() * 1 - 0.5;
+        this.opacity = 1;
+        this.color = `rgba(200, 200, 200, ${this.opacity})`;
+    }
+
+    update() {
+        this.y += this.speedY;
+        this.x += this.speedX;
+        this.size += 0.5; // Дим розширюється
+        if (this.opacity > 0.01) this.opacity -= 0.005; // Плавно зникає
+    }
+
+    draw() {
+        ctx.fillStyle = `rgba(200, 200, 200, ${this.opacity})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+
+
 
 </script>
 

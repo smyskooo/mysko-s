@@ -131,7 +131,7 @@ body, html {
 /* 5. Трикутник зверху (як на твоєму малюнку) */
 .note-arrow {
     position: absolute;
-    top: -6px; /* Виносимо на рамку */
+    top: -7px; /* Виносимо на рамку */
     left: 50%;
     transform: translateX(-50%) rotate(45deg);
     width: 1.2vw;

@@ -1,9 +1,10 @@
 
 .era-num {
     position: fixed;
-    top: 40px;      /* Можеш підправити під свій хедер */
-    right: 60px;    /* Чітко в кутку */
+   top: 7.3vh;      /* Можеш підправити під свій хедер */
+    right: 5vw;    /* Чітко в кутку */
     font-family: 'Noto Sans Mono', monospace;
+    font-size: 1.6vw;
     font-weight: 700;
     letter-spacing: 2px;
     z-index: 1000;
@@ -16,7 +17,7 @@
 /* 2. ТЕКСТОВИЙ БЛОК — ЦЕНТРАЛЬНО-ПРАВИЙ */
 /* Контейнер на всю ширину, який штовхає контент вправо */
 .main-content-wrapper {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100vw;
@@ -25,26 +26,36 @@
     justify-content: flex-end; /* ШТОВХАЄМО ВСЕ ПРАВОРУЧ */
     align-items: center;     /* Центруємо по вертикалі */
     pointer-events: none;    /* Щоб не перекривало кліки по фону */
+
 }
 
 /* Сама "коробка" з текстом */
 .text-block {
-    width: 380px;            /* Ширина текстової колонки */
-    margin-right: 120px;     /* Відступ від правого краю екрана */
-    margin-top: 15px;
+    width: 36.5vw;            /* Ширина текстової колонки */
+    margin-right: 11.5vw;     /* Відступ від правого краю екрана */
+    margin-top: 1.4vw;
     display: flex;
     flex-direction: column;
     align-items: flex-start; /* ВСЕ ВСЕРЕДИНІ РІВНЯЄМО ПО ЛІВОМУ КРАЮ */
     text-align: left;        /* Текст читається зліва направо */
-    padding-top: 35px;
+    padding-top: 3.3vw;
     pointer-events: auto;    /* Повертаємо можливість клікати по кнопках */
     color: #ffffff;
+    position: relative; /* Обов'язково додаємо це */
+    z-index: 10000 !important; /* Ставимо весь блок вище за колажі */
+    pointer-events: auto !important; /* Дозволяємо взаємодію всередині */
+}
+
+#musicToggle {
+    position: relative !important;
+    z-index: 10001 !important; /* Ще вище */
+    pointer-events: all !important; /* Клік точно має працювати */
 }
 
 /* Твої стилі заголовків та кнопок */
 .era-title {
     font-family: 'Noto Sans Mono', monospace;
-    font-size: 30px;
+    font-size: 2.6vw;
     font-weight: 700;
     line-height: 0.9;
     margin: 0 0 10px 0;
@@ -52,15 +63,15 @@
 }
 
 .era-subtitle {
-    font-size: 16px;
-    margin-bottom: 17px;
+    font-size: 1.3vw;
+    margin-bottom: 1.2vh;
     opacity: 0.8;
 }
 
 .era-text {
-    font-size: 14px;
+    font-size: 1.3vw;
     line-height: 1.6;
-    margin-bottom: 25px;
+    margin-bottom: 1.8vh;
 }
 
 
@@ -70,17 +81,18 @@
 .play-btn {
     display: flex;
     align-items: center;
-    gap: 15px;
-    padding: 10px 20px;
+   gap: 1.9vw;
+    padding: 1vw 2vw;
     background: transparent;
     border: 2px solid #ffffff; /* Біла рамка, як у колажів */
     color: #ffffff;
     border-radius: 4px;
     font-family: 'Noto Sans Mono', monospace;
-    font-size: 13px;
+     font-size: 1vw;
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s ease;
+    z-index: 9999;
 }
 
 .play-btn:hover {
@@ -157,4 +169,270 @@
         filter: blur(50px) saturate(180%);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.duke-era {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    
+  overflow: visible;
+}
+
+/* 1. КОЛАЖ (ch-david3) - вилітає першим зліва */
+.side-collage {
+    position: absolute;
+    top: 1vw; 
+    left: 5vw;
+    width: 14vw;
+    z-index: 10;
+    
+   filter: drop-shadow(5px 8px 15px rgba(215, 215, 215, 0.391)) !important;
+  
+    opacity: 0;
+    /* Початковий стан: зміщення вліво + нахил */
+    transform: translateX(-100px) rotate(-8deg); 
+    
+    /* forwards — щоб картинка не зникла і не повернулася в початковий стан */
+    animation: slideInLeft 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    animation-delay: 0.3s;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100px) rotate(-8deg);
+    }
+    to {
+        opacity: 1;
+        /* Фінальний стан: стаємо на місце по X, але ТРИМАЄМО нахил */
+        transform: translateX(0) rotate(-8deg); 
+    }
+    
+}
+
+
+
+/* 2. ФОТО З ДИМОМ (ch-david2) - залітає під колаж */
+.photo-smoke-wrapper {
+    position: absolute;
+    top: 30vh; /* трохи нижче колажу */
+    left: 29vw; /* фіксована позиція в центрі-лівіше */
+    width: 14vw;
+    z-index: 5;
+    filter: drop-shadow(5px 8px 15px rgba(194, 193, 193, 0.474)) !important;
+    opacity: 0;
+    transform: translateY(50px);
+    animation: smoothAppear 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    animation-delay: 0.9s; /* з'являється після колажу */
+}
+
+/* 3. ФОТО З ТІННЮ (ch-david1) - фінальний акорд */
+.photo-transition-wrapper {
+    position: absolute;
+    top: 4vh;
+    left: 23vw; /* фіксована позиція справа */
+    width: 10vw;
+    z-index: 15; /* воно має бути поверх тіні */
+    
+    opacity: 0;
+    transform: translateY(50px);
+    animation: smoothAppear 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    animation-delay: 1.5s; /* з'являється останнім */
+    overflow: visible;
+}
+
+/* Ключові кадри анімацій */
+@keyframes slideInLeft {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes smoothAppear {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Специфічні стилі для контенту всередині */
+.smoke-pic, .transition-pic, .side-collage img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Тінь, яка вже чекає під ch-david1 */
+.living-shadow {
+    position: absolute;
+    top: 4vh;
+    left: 3vw;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: -1; 
+    filter: blur(10px);
+    transition: all 0.6s ease;
+    
+    /* ЦЕНТРУВАННЯ ТЕКСТУ */
+    display: flex;
+    align-items: center;      /* Тепер чітко по центру вертикалі */
+    justify-content: center;   /* Чітко по центру горизонталі */
+    
+    /* ГЕОМЕТРІЯ ТА СТИЛЬ */
+    border: 1px solid #fff;
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+    padding-left: 0.9vw;
+}
+
+/* СТИЛЬ САМОГО ТЕКСТУ "LET'S DANCE" */
+.living-shadow {
+    color: #000;              /* Чорний колір */
+    font-size: 1.5vw;          /* Робимо меншим (було ~12-14) */
+    text-transform: uppercase;
+    letter-spacing: 2px;      /* Трохи розсунемо букви, щоб було стильно */
+  
+    font-family: sans-serif;  /* Або твій шрифт */
+}
+
+.living-shadow:hover {
+    background: #00d2ff;
+    filter: blur(0);
+    transform: translate(2vw, 2vw);
+    z-index: 10;
+    border-color: #000;       /* Чорна обводка при наведенні */
+}
+
+
+
+
+
+
+
+
+
+
+/* --- ФІНАЛЬНИЙ БАЛАНС: ПРАВА КАРТИНКА --- */
+
+.side-pic-right {
+    position: absolute;
+    /* ПОЗИЦІОНУВАННЯ СПРАВА */
+    top: 57vh;        /* Висота: трохи вище центра, щоб збалансувати лівий колаж */
+    right: 15vw;       /* Чіткий відступ від правого краю (як лівий collage) */
+    width: 9vw;      /* Вона маленька, акуратна */
+    z-index: 12;      /* Трохи вище за дим, але нижче за перехід */
+    
+    /* ТІНЬ (у твоєму стилі) */
+    filter: drop-shadow(4px 6px 12px rgba(215, 215, 215, 0.3)) !important;
+    
+    /* ПОЧАТКОВИЙ СТАН ДЛЯ АНІМАЦІЇ */
+    opacity: 0;
+    /* Вилітає СПРАВА (+100px) і має легкий нахил в інший бік */
+    transform: translateX(100px) rotate(5deg); 
+    
+    /* АНІМАЦІЯ */
+    animation: slideInRight 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    /* З'являється разом з центральним фото з димом, для ритму */
+    animation-delay: 0.9s; 
+}
+
+/* Специфічні стилі для контенту всередині */
+.side-pic-right img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Ключові кадри для вильоту СПРАВА */
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px) rotate(5deg);
+    }
+    to {
+        opacity: 1;
+        /* Фінальний стан: стаємо на місце (0), тримаємо нахил */
+        transform: translateX(0) rotate(5deg); 
+    }
+}
+
+
+
+
+
+
+.photo-smoke-wrapper {
+    position: absolute; /* твої координати на сторінці */
+    /* ... інші твої стилі (нахил і т.д.) ... */
+    
+    /* ОЦЕ ТЕ, ЩО ТИ ШУКАЛА: */
+    overflow: hidden; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cigarette-smoke-video {
+    position: absolute;
+    top: -20%;    /* Мінус піднімає відео ВГОРУ */
+    left: -17%;
+    width: 130%;
+    height: auto;
+    object-fit: cover;
+   
+    
+    /* 1. ЗМІНЮЄМО РЕЖИМ НА ЦЕЙ: */
+    mix-blend-mode: color-dodge !important; 
+
+    /* 2. ПІДТЯГУЄМО ЯСКРАВІСТЬ САМОГО БІЛОГО */
+    /* contrast — робить дим чіткішим */
+    /* brightness — робить його білішим */
+    filter: grayscale(1) contrast(150%) brightness(1.5);
+
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.9; /* Можеш трохи зменшити, якщо буде занадто "ядерно" */
+}
+
+.smoke-pic {
+    display: block;
+    width: 100%;
+    height: auto;
+    z-index: 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
