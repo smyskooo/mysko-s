@@ -62,6 +62,70 @@
         </div>
     </div>
 </div>
+
+<section class="superstar-section">
+   
+
+    <div class="left-container">
+        <div class="image-rotator">
+            <img src="img/star-frame1.png" class="active" alt="Bowie 1">
+            <img src="img/star-frame2.png" alt="Bowie 2">
+            <img src="img/star-frame3.png" alt="Bowie 3">
+        </div>
+    </div>
+
+    <div class="right-container">
+        <div class="video-frame">
+            <img src="img/star-frame4.png" class="frame-overlay"> 
+            <video src="video/lets-dance.mp4" autoplay muted loop></video>
+        </div>
+    </div>
+    <div class="extra-decor">
+    <img src="img/star-photo.jpg" alt="Bowie Extra">
+</div>
+
+
+<div class="star star-top-1">✦</div>
+<div class="star star-top-2">★</div>
+<div class="star star-top-3">✦</div>
+
+<div class="star star-bottom-1">★</div>
+<div class="star star-bottom-2">✦</div>
+
+  
+</section>
+
+
+<div class="light-switch" id="switch">
+    <div class="wire"></div> <div class="handle"></div> </div>
+    
+
+<div class="blackstar-overlay" id="overlay">
+    <div class="pulsing-star">★</div>
+    <h1 class="blackstar-title">Blackstar</h1>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <script>
 // --- Аудіо і Анімація під Біт ---
 
@@ -91,6 +155,169 @@ musicBtn.addEventListener('click', function() {
         musicBtn.querySelector('.play-btn__icon').innerText = '▶';
     }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const lightSwitch = document.getElementById('switch');
+const overlay = document.getElementById('overlay');
+
+// Сюди впиши назву свого файлу нової ери
+const nextEraUrl = '5blackstar.html'; 
+
+lightSwitch.addEventListener('mouseup', () => {
+    // 1. Додаємо ефект спалаху (білий колір на мить)
+    document.body.classList.add('flash');
+    
+    // 2. Через 200мс вмикаємо чорний оверлей
+    setTimeout(() => {
+        if (overlay) {
+            overlay.style.opacity = '1';
+            overlay.style.pointerEvents = 'all';
+        }
+        
+        // Ховаємо шнурок, щоб він не стирчав у темряві
+        lightSwitch.style.display = 'none';
+        
+        // 3. Даємо юзеру 0.8 секунди побути в темряві Blackstar і депортуємо на нову сторінку
+        setTimeout(() => {
+            window.location.href = nextEraUrl;
+        }, 2100); 
+
+    }, 200);
+});
+
+// Додатковий фікс для "дизайнерської фізики": 
+// якщо мишку відвели від шнурка, він має плавно повернутися вгору
+lightSwitch.addEventListener('mouseleave', () => {
+    lightSwitch.style.transform = 'translateY(0)';
+});
+
+lightSwitch.addEventListener('mousedown', () => {
+    lightSwitch.style.transform = 'translateY(40px)';
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function startAnimations() {
+    const left = document.querySelector('.left-container');
+    const right = document.querySelector('.right-container');
+
+    if (left && right) {
+        // Затримка, щоб юзер встиг побачити текст, а потім вилітають картинки
+        setTimeout(() => {
+            left.classList.add('appear');
+            right.classList.add('appear');
+        }, 500);
+    }
+}
+
+// Запуск при завантаженні
+window.addEventListener('DOMContentLoaded', startAnimations);
+
+// Слайдер для лівої картинки
+let currentImg = 0;
+setInterval(() => {
+    const imgs = document.querySelectorAll('.image-rotator img');
+    if (imgs.length > 0) {
+        imgs[currentImg].classList.remove('active');
+        currentImg = (currentImg + 1) % imgs.length;
+        imgs[currentImg].classList.add('active');
+    }
+}, 3000);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Твій існуючий код для left і right...
+    const left = document.querySelector('.left-container');
+    const right = document.querySelector('.right-container');
+    const extra = document.querySelector('.extra-decor'); // Новий елемент
+
+
+
+    setTimeout(() => {
+        if(left) left.classList.add('appear');
+        if(right) right.classList.add('appear');
+        
+        if(extra) {
+            console.log("Extra decor знайдено, запускаю!"); // Перевір це в консолі (F12)
+            extra.classList.add('appear');
+        } else {
+            console.error("Не можу знайти .extra-decor у розмітці!");
+        }
+    }, 500);
+});
+
+const stars = document.querySelectorAll('.star');
+
+if (stars.length > 0) {
+    setTimeout(() => {
+        stars.forEach((star, index) => {
+            setTimeout(() => {
+                star.classList.add('appear');
+            }, index * 150); // Зірочки з'являтимуться по черзі з маленькою затримкою
+        });
+    }, 600); // Запускаємо через 0.6 сек після завантаженн
+}
 
 </script>
 

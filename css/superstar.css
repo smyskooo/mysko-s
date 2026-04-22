@@ -1,8 +1,9 @@
 .era-num {
     position: fixed;
-    top: 420px;      /* Можеш підправити під свій хедер */
-    right: 60px;    /* Чітко в кутку */
+    top: 88vh;      /* Можеш підправити під свій хедер */
+    right: 5.7vw;    /* Чітко в кутку */
     font-family: 'Noto Sans Mono', monospace;
+     font-size: 1.6vw;
     font-weight: 700;
     letter-spacing: 2px;
     z-index: 1000;
@@ -22,21 +23,22 @@
 
 /* Сама "коробка" з текстом: центрує все всередині себе */
 .text-block {
-    width: 500px;            /* Можна трохи розширити для центрального макета */
-    margin-top: 30px;
+    width: 48vw;            /* Можна трохи розширити для центрального макета */
+    margin-top: 5.8vh;
     display: flex;
     flex-direction: column;
     align-items: center;     /* ЦЕНТРУЄМО ЗАГОЛОВОК, ТЕКСТ І КНОПКУ */
     text-align: center;      /* ВИРІВНЮЄМО САМІ РЯДКИ ТЕКСТУ ПО ЦЕНТРУ */
-    padding: 20px;
+    padding: 2vw;
     pointer-events: auto;
    
+
 }
 
 /* Твої стилі заголовків та кнопок */
 .era-title {
     font-family: 'Noto Sans Mono', monospace;
-    font-size: 30px;
+    font-size: 2.6vw;
     font-weight: 700;
     line-height: 0.9;
     margin: 0 0 10px 0;
@@ -45,15 +47,15 @@
 }
 
 .era-subtitle {
-    font-size: 16px;
-    margin-bottom: 17px;
+   font-size: 1.3vw;
+    margin-bottom: 1.2vh;
     opacity: 0.8;
 }
 
 .era-text {
-    font-size: 14px;
+    font-size: 1.3vw;
     line-height: 1.6;
-    margin-bottom: 25px;
+    margin-bottom: 1.8vh;
 }
 
 
@@ -62,14 +64,14 @@
 .play-btn {
     display: flex;
     align-items: center;
-    gap: 15px;
-    padding: 10px 20px;
+    gap: 1.9vw;
+    padding: 1vw 2vw;
     background: transparent;
     border: 2px solid #5c4009; /* Біла рамка, як у колажів */
     color: #5c4009;
     border-radius: 4px;
     font-family: 'Noto Sans Mono', monospace;
-    font-size: 13px;
+     font-size: 1vw;
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -144,4 +146,349 @@
         filter: blur(50px) saturate(180%);
     }
 }
+
+
+
+
+
+
+
+.light-switch {
+    position: fixed;
+    top: -200px; /* Схований за край */
+    right: 10%;
+    width: 30px;
+    height: 300px;
+    cursor: grab;
+    z-index: 9999;
+    
+    /* Додаємо прозорість та плавний перехід для неї */
+    opacity: 0.3; 
+    transition: transform 0.3s cubic-bezier(0.17, 0.67, 0.83, 0.67), opacity 0.3s ease;
+}
+
+/* Коли наводимо мишку — стає чітким */
+.light-switch:hover {
+    opacity: 1;
+}
+
+/* Коли тягнемо вниз */
+.light-switch:active {
+    transform: translateY(40px);
+    cursor: grabbing;
+}
+
+.wire {
+    width: 2px;
+    height: 250px;
+    background: #000;
+    margin: 0 auto;
+}
+
+.handle {
+    width: 15px;
+    height: 15px;
+    background: #000;
+    border-radius: 50%;
+    margin: -5px auto 0;
+}
+
+/* Оверлей Blackstar */
+.blackstar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    z-index: 10000;
+}
+
+/* Спалах при вимкненні */
+.flash {
+    animation: flash-effect 0.4s ease-out;
+}
+
+@keyframes flash-effect {
+    0% { background: #fff; opacity: 1; }
+    100% { background: #000; opacity: 1; }
+}
+
+/* Пульсуюча зірка */
+.pulsing-star {
+    color: #fff;
+    font-size: 5rem;
+    animation: pulse 3s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.2); opacity: 1; filter: blur(2px); }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- ПЛАВНІ ТІНІ ДЛЯ ВСІХ ЕЛЕМЕНТІВ --- */
+
+/* 1. Тінь для лівого слайдера */
+.left-container .image-rotator {
+    /* 15px — це тепер розмиття. Чим більше число, тим м'якша тінь */
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4); 
+}
+
+/* 2. Тінь для правого відео */
+.right-container .video-frame {
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* 3. Тінь для нижньої картинки */
+.extra-decor {
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4);
+}
+
+.left-container:hover .image-rotator,
+.right-container:hover .video-frame,
+.extra-decor:hover {
+    box-shadow: 15px 15px 25px rgba(0, 0, 0, 0.5); /* Тінь стає м'якшою, ніби картинка піднялася */
+    transition: box-shadow 0.4s ease;
+}
+
+
+
+
+
+
+
+
+.extra-decor {
+    position: absolute;
+    /* Виставляємо координати, щоб він був помітним */
+    bottom: -90%;
+    left: 85%; 
+    width: 17vw; /* Обов'язково вкажи ширину, інакше картинка може бути 0px */
+    height: auto;
+    z-index: 49; /* Високий пріоритет */
+    
+    /* Початковий стан: схований внизу */
+    transform: translateX(-50%) translateY(100vh)rotate(-7deg); 
+    opacity: 0;
+    transition: transform 1.5s ease-out, opacity 1s ease-out;
+}
+
+/* Коли додається клас через JS */
+.extra-decor.appear {
+    transform: translateX(-50%) translateY(0) rotate(-7deg) !important;
+    opacity: 1 !important;
+}
+
+.extra-decor img {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* Якщо картинка не вантажиться, додамо рамку для тесту (потім видалиш) */
+   
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- ПРАВИЙ БЛОК (ВІДЕО) --- */
+.right-container {
+    position: absolute;
+    top: 35vh;
+    right: 4vw; /* Твоя точка зупинки */
+    width: 18vw;
+    height: auto;
+    z-index: 50;
+    cursor: pointer !important; /* Курсор-ручка */
+    
+    /* Початковий стан за екраном справа */
+    transform: translateY(-50%) translateX(150vw);
+    transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Фільтр ЧБ накладаємо на весь контейнер відео */
+.video-frame {
+    position: relative;
+    width: 90%;
+    filter: grayscale(1);
+    transition: filter 0.5s ease;
+}
+
+/* Ефект кольору при наведенні */
+.right-container:hover .video-frame {
+    filter: grayscale(0);
+}
+
+.frame-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none; /* Щоб мишка "бачила" відео під рамкою */
+}
+
+video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* --- ЛІВИЙ БЛОК (СЛАЙДЕР) --- */
+.left-container {
+    position: absolute;
+    top: 59vh;
+    left: 7vw; /* Твоя точка зупинки */
+    width: 18vw;
+    height: auto;
+    z-index: 50;
+    
+    
+    /* Початковий стан за екраном зліва */
+    transform: translateY(-50%) translateX(-150vw) rotate(-7deg);
+    transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Стан вильоту для обох */
+.left-container.appear {
+    /* Тут теж обов'язково дублюємо rotate(-7deg), інакше при зупинці вона вирівняється */
+    transform: translateY(-50%) translateX(0) rotate(-7deg) !important;
+}
+.right-container.appear {
+    transform: translateY(-50%) translateX(0) rotate(7deg) !important;
+}
+
+/* Слайдер картинок */
+.image-rotator {
+    position: relative;
+    width: 100%;
+}
+
+.image-rotator img {
+    width: 100%;
+    height: auto;
+    display: none; /* Ховаємо всі */
+}
+
+.image-rotator img.active {
+    display: block; /* Показуємо тільки активну */
+    opacity: 1;
+}
+
+
+
+
+
+
+/* 1. БАЗОВИЙ СТИЛЬ ТА ПОЗИЦІЇ */
+.star {
+    position: absolute;
+    color: #000;
+    font-size: 2.2vw;
+    opacity: 0;
+    z-index: 100;
+    pointer-events: none;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    /* Плавність появи */
+    transition: top 2s cubic-bezier(0.19, 1, 0.22, 1), 
+                bottom 2s cubic-bezier(0.19, 1, 0.22, 1), 
+                opacity 2s ease;
+                
+}
+
+/* Початкові точки (сховані за краєм) */
+.star-top-1 { top: -50px; left: 15%; }
+.star-top-2 { top: -50px; left: 55%; font-size: 18px; }
+.star-top-3 { top: -50px; right: 7%; }
+
+.star-bottom-1 { bottom: -50px; left: 33%; }
+.star-bottom-2 { bottom: -50px; right: 30%; font-size: 30px; }
+
+/* 2. СТАН ПІСЛЯ ВИЛЬОТУ */
+/* Коли додаємо клас .appear, зірки змінюють координати і стають видимими */
+.star.appear {
+    opacity: 0.6;
+}
+
+/* Куди вони приземляються (підкручуй ці цифри, щоб змінити висоту) */
+.star-top-1.appear { top: 60px; }
+.star-top-2.appear { top: 50px; }
+.star-top-3.appear { top: 40px; }
+
+.star-bottom-1.appear { bottom: 35px; }
+.star-bottom-2.appear { bottom: -15px; }
+
+/* 3. АНІМАЦІЯ ХАОТИЧНОГО РУХУ */
+@keyframes floatStar {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    33%  { transform: translate(8px, -12px) rotate(5deg); }
+    66%  { transform: translate(-8px, 8px) rotate(-5deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+/* Запускаємо рух ТІЛЬКИ після того, як зірка з'явилася */
+.star.appear {
+    animation: floatStar 5s ease-in-out infinite;
+}
+
+/* Різна швидкість для хаосу */
+.star-top-1 { animation-duration: 4.5s; }
+.star-top-2 { animation-duration: 6s; animation-delay: 0.5s; }
+.star-top-3 { animation-duration: 5s; animation-delay: 1.2s; }
+.star-bottom-1 { animation-duration: 7.5s; }
+.star-bottom-2 { animation-duration: 5.5s; animation-delay: 0.8s; }
+
+
 

@@ -1,9 +1,10 @@
 
 .era-num {
     position: fixed;
-    top: 40px;      /* Можеш підправити під свій хедер */
-    right: 60px;    /* Чітко в кутку */
+     top: 7.3vh;      /* Можеш підправити під свій хедер */
+    right: 5vw;     /* Чітко в кутку */
     font-family: 'Noto Sans Mono', monospace;
+    font-size: 1.6vw;
     font-weight: 700;
     letter-spacing: 2px;
     z-index: 1000;
@@ -29,15 +30,15 @@
 
 /* Сама "коробка" з текстом */
 .text-block {
-    width: 430px;            /* Ширина текстової колонки */
-    margin-right: 500px;     /* Відступ від правого краю екрана */
-    margin-left: 100px;
-    margin-top: 15px;
+    width: 41.3vw;            /* Ширина текстової колонки */
+    margin-right: 48vw;     /* Відступ від правого краю екрана */
+    margin-left: 9.6vw;
+    margin-top: 4vh;
     display: flex;
     flex-direction: column;
     align-items: flex-start; /* ВСЕ ВСЕРЕДИНІ РІВНЯЄМО ПО ЛІВОМУ КРАЮ */
     text-align: left;        /* Текст читається зліва направо */
-    padding-top: 35px;
+    padding-top: 3.3vw;
     pointer-events: auto;    /* Повертаємо можливість клікати по кнопках */
      color: #ffffff;
 }
@@ -45,7 +46,7 @@
 /* Твої стилі заголовків та кнопок */
 .era-title {
     font-family: 'Noto Sans Mono', monospace;
-    font-size: 30px;
+    font-size: 2.6vw;
     font-weight: 700;
     line-height: 0.9;
     margin: 0 0 10px 0;
@@ -53,15 +54,15 @@
 }
 
 .era-subtitle {
-    font-size: 16px;
-    margin-bottom: 17px;
+  font-size: 1.3vw;
+    margin-bottom: 1.2vh;
     opacity: 0.8;
 }
 
 .era-text {
-    font-size: 14px;
+    font-size: 1.3vw;
     line-height: 1.6;
-    margin-bottom: 25px;
+    margin-bottom: 1.8vh;
 }
 
 
@@ -71,14 +72,14 @@
 .play-btn {
     display: flex;
     align-items: center;
-    gap: 15px;
-    padding: 10px 20px;
+    gap: 1.9vw;
+    padding: 1vw 2vw;
     background: transparent;
     border: 2px solid #ffffff; /* Біла рамка, як у колажів */
     color: #ffffff;
     border-radius: 4px;
     font-family: 'Noto Sans Mono', monospace;
-    font-size: 13px;
+    font-size: 1vw;
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -150,4 +151,219 @@
         opacity: 0.8;
         filter: blur(50px) saturate(180%);
     }
+}
+
+
+
+
+
+
+/* 1. БАЗОВИЙ КОНТЕЙНЕР ДЛЯ ФОТО */
+.blackstar-photo-container {
+    position: absolute;
+    top: 50%; /* Центруємо по вертикалі */
+    transform: translateY(-50%); /* Корекція центрування */
+    
+    /* ПОЧАТКОВИЙ СТАН: сховано справа за межами екрана */
+    right: -500px; /* Збільш, якщо картка велика */
+    
+    width: 21vw; /* Твій розмір картки */
+    height: auto;
+    z-index: 150;
+    
+    /* Плавність для вильоту і наведення курсору */
+    transition: right 1.5s cubic-bezier(0.19, 1, 0.22, 1), transform 0.6s ease;
+    cursor: pointer;
+    transform: translateY(-50%) rotate(5deg); 
+
+    /* Плавність для нахилу теж додаємо в transition */
+    transition: right 1.5s cubic-bezier(0.19, 1, 0.22, 1), 
+                transform 0.6s ease;
+
+                /* Використовуємо filter: drop-shadow, щоб вона ідеально облягала краї фоток */
+    filter: drop-shadow(10px 15px 25px rgba(0, 0, 0, 0.749));
+
+    transition: right 1.5s cubic-bezier(0.19, 1, 0.22, 1), 
+                transform 0.6s ease,
+                filter 0.6s ease; /* Щоб тінь теж плавно мінялась при ховері */
+}
+
+/* Коли додаємо клас .reveal через JS, вона вилітає справа */
+.blackstar-photo-container.reveal {
+    right: 20%; /* Куди вона прилітає (підкрути під свій макет) */
+    top:80%;
+}
+
+/* 2. НАЛАШТУВАННЯ САМИХ КАРТИНОК */
+.blackstar-photo-container img {
+    width: 100%;
+    height: auto;
+    position: absolute; /* Одна на одній */
+    top: 0;
+    left: 0;
+    
+    /* Плавність для мерехтіння */
+    transition: opacity 0.5s ease;
+    /* Усередині контейнера одна на одній */
+    backface-visibility: hidden;
+}
+
+/* Початковий стан картинок */
+.photo-front {
+    opacity: 1; /* Білу видно спочатку */
+    z-index: 2; /* Вона зверху */
+}
+
+.photo-back {
+    opacity: 0; /* Сіру ховаємо */
+    z-index: 1; /* Вона знизу */
+    filter: grayscale(100%) contrast(1.2); /* Можна ще ефектів додати */
+}
+
+/* 3. МАГІЯ НАВЕДЕННЯ (HOVER) */
+/* Коли наводимо на КОНТЕЙНЕР, міняємо видимість */
+.blackstar-photo-container:hover .photo-front {
+    opacity: 0; /* Біла зникає */
+}
+
+.blackstar-photo-container:hover .photo-back {
+    opacity: 1; /* Сіра з'являється */
+    z-index: 3; /* Вона стає найголовнішою */
+}
+
+/* Маленький бонус: легкий рух при наведенні */
+.blackstar-photo-container:hover {
+    transform: translateY(-50%) scale(1.03); /* Трохи збільшується */
+}
+
+
+
+
+
+
+
+
+
+
+
+/* 1. ПРИМУСОВИЙ РОЗМІР ДЛЯ ВСІХ КАРТИНОК ДЕКОРУ */
+.table-decor img {
+    width: 100% !important;
+    height: auto !important;
+    display: block;
+}
+
+/* 2. БАЗОВИЙ КЛАС ДЛЯ ВСЬОГО, ЩО ЛЕТИТЬ */
+.table-decor {
+    position: fixed;
+    z-index: 60;
+    right: -1000px; /* Ховаємо подалі, щоб точно не заважало */
+    transition: right 1.5s cubic-bezier(0.19, 1, 0.22, 1), 
+                transform 0.6s ease, 
+                opacity 0.5s ease;
+}
+
+/* 3. ГАЗЕТА (ЯКЩО ВОНА МАЄ БУТИ ВЕЛИКОЮ) */
+/* Додай клас .newspaper у свій HTML до газети */
+.newspaper {
+    width: 320px !important; /* Став тут розмір своєї газети */
+    bottom: 50px;
+    z-index: 20;
+}
+.newspaper.reveal {
+    right: 50px; /* Позиція газети на екрані */
+    top: 225px;
+    transform: rotate(-10deg);
+}
+
+/* 4. ПОПІЛЬНИЧКА */
+.ashtray {
+    width: 100px !important;
+    bottom: 20px;
+}
+.ashtray.reveal {
+    right: 30px;
+    top: 90px;
+    transform: rotate(-15deg);
+    filter: drop-shadow(0px 0px 15px rgba(139, 139, 139, 0.3)) 
+            drop-shadow(5px 5px 20px rgba(200, 200, 200, 0.2)) !important;
+}
+
+/* 5. МАЛЮСІНЬКА ЗАПИСКА (note.jpg) */
+.my-thanks-note {
+    width: 90px !important; /* ОСЬ ТВІЙ МАЛЮСІНЬКИЙ РОЗМІР */
+    bottom: 40px;
+    cursor: pointer;
+    pointer-events: auto;
+    z-index: 19;
+}
+.my-thanks-note.reveal { 
+    right: 100px; /* Позиція на столі */
+    top: 400px;
+
+    transform: rotate(5deg); 
+}
+
+/* 6. РЕЖИМ ЧИТАННЯ ЗАПИСКИ (ПО ЦЕНТРУ) */
+.my-thanks-note.fullscreen {
+    position: fixed;
+    top: 50% !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 450px !important; /* Тут вона стає великою */
+    transform: translate(-50%, -50%) !important;
+    z-index: 1000;
+}
+
+/* ОВЕРЛЕЙ (ТЛО) */
+.note-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    opacity: 0; visibility: hidden;
+    z-index: 900;
+    transition: all 0.5s ease;
+}
+.note-overlay.visible { opacity: 1; visibility: visible; }
+
+
+
+
+
+
+
+
+
+
+/* Додаємо тінь усім елементам на столі */
+.table-decor {
+    filter: drop-shadow(5px 5px 15px rgba(29, 29, 29, 0.6));
+    transition: right 1.5s cubic-bezier(0.19, 1, 0.22, 1), 
+                transform 0.6s ease, 
+                filter 0.3s ease; /* Щоб тінь теж плавно змінювалася */
+}
+
+/* Окрема м'якша тінь для записки */
+.my-thanks-note {
+    filter: drop-shadow(3px 3px 8px rgba(145, 145, 145, 0.57));
+}
+
+
+
+.my-thanks-note:hover:not(.fullscreen) {
+    /* Піднімаємо вгору (translateY), вирівнюємо (rotate 0) і трохи збільшуємо */
+    transform: translateY(-15px) rotate(0deg) scale(1.05) !important;
+    
+    /* Робимо тінь більшою, ніби папірець піднявся вище над столом */
+    filter: drop-shadow(15px 15px 25px rgba(0, 0, 0, 0.7));
+    
+    z-index: 200;
+}
+
+
+.ashtray:hover {
+    filter: drop-shadow(0px 0px 25px rgba(255, 255, 255, 0.5)) !important;
+    transform: rotate(-10deg) scale(1.02);
+    transition: all 0.4s ease;
 }

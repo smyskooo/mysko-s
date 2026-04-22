@@ -47,7 +47,7 @@ body[class*="page-"] {
 
 .page-blackstar {
     background-image: 
-        linear-gradient(rgba(230, 235, 240, 0.2), rgba(230, 235, 240, 0.2)), 
+        linear-gradient(rgba(230, 235, 240, 0.2), rgba(0, 0, 0, 0.866)), 
         url('../img/black-paper.jpg') !important;
 }
 

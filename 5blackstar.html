@@ -62,6 +62,29 @@
     </div>
 </div>
 
+
+<div class="blackstar-photo-container">
+    <img src="img/black-star1.png" alt="Blackstar Era" class="photo-front">
+    <img src="img/black-star2.png" alt="Blackstar Era Hidden" class="photo-back">
+</div>
+
+
+
+<div id="note-overlay" class="note-overlay"></div>
+
+<div class="table-decor ashtray fly-in">
+    <img src="img/sigi.png" alt="ashtray">
+</div>
+
+<div class="table-decor newspaper">
+    <img src="img/gazeta.png" alt="newspaper">
+</div>
+
+<div id="main-thanks-note" class="table-decor my-thanks-note fly-in">
+    <img src="img/note.jpg" alt="Thanks">
+   
+</div>
+
 <script>
 // --- Аудіо і Анімація під Біт ---
 
@@ -89,6 +112,80 @@ musicBtn.addEventListener('click', function() {
         visualizer.classList.remove('active'); // Ховаємо м'ятну хвилю
         musicBtn.querySelector('.play-btn__text').innerText = 'Listen to the Epoch';
         musicBtn.querySelector('.play-btn__icon').innerText = '▶';
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Знаходимо контейнер з фото Blackstar
+const blackstarPhoto = document.querySelector('.blackstar-photo-container');
+
+// Сценарій 1: Вилітає через 1.5 секунди після завантаження сторінки
+setTimeout(() => {
+    blackstarPhoto.classList.add('reveal');
+}, 500);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const notes = document.querySelectorAll('.table-decor');
+const mainNote = document.getElementById('main-thanks-note');
+const overlay = document.getElementById('note-overlay');
+
+// 1. Плавний виліт всього декору через 2 секунди
+setTimeout(() => {
+    notes.forEach(note => note.classList.add('reveal'));
+}, 1000);
+
+// 2. Клік на записку для читання
+mainNote.addEventListener('click', function(e) {
+    e.stopPropagation(); // Щоб клік не спрацював на фоні відразу
+    this.classList.add('fullscreen');
+    overlay.classList.add('visible');
+});
+
+// 3. Клік куди завгодно поза запискою для повернення
+document.addEventListener('click', function() {
+    if (mainNote.classList.contains('fullscreen')) {
+        mainNote.classList.remove('fullscreen');
+        overlay.classList.remove('visible');
     }
 });
 
