@@ -266,24 +266,24 @@
 /* 3. ГАЗЕТА (ЯКЩО ВОНА МАЄ БУТИ ВЕЛИКОЮ) */
 /* Додай клас .newspaper у свій HTML до газети */
 .newspaper {
-    width: 320px !important; /* Став тут розмір своєї газети */
-    bottom: 50px;
+    width: 30.7vw !important; /* Став тут розмір своєї газети */
+    bottom: 7.8vh;
     z-index: 20;
 }
 .newspaper.reveal {
-    right: 50px; /* Позиція газети на екрані */
-    top: 225px;
+    right: 4.8vw; /* Позиція газети на екрані */
+    top: 21.6vw;
     transform: rotate(-10deg);
 }
 
 /* 4. ПОПІЛЬНИЧКА */
 .ashtray {
-    width: 100px !important;
-    bottom: 20px;
+    width: 9.6vw !important;
+    bottom: 2vw;
 }
 .ashtray.reveal {
-    right: 30px;
-    top: 90px;
+    right: 2.8vw;
+    top: 8.6vw;
     transform: rotate(-15deg);
     filter: drop-shadow(0px 0px 15px rgba(139, 139, 139, 0.3)) 
             drop-shadow(5px 5px 20px rgba(200, 200, 200, 0.2)) !important;
@@ -291,15 +291,15 @@
 
 /* 5. МАЛЮСІНЬКА ЗАПИСКА (note.jpg) */
 .my-thanks-note {
-    width: 90px !important; /* ОСЬ ТВІЙ МАЛЮСІНЬКИЙ РОЗМІР */
-    bottom: 40px;
+    width: 8.6vw !important; /* ОСЬ ТВІЙ МАЛЮСІНЬКИЙ РОЗМІР */
+    bottom: 3.8vw;
     cursor: pointer;
     pointer-events: auto;
     z-index: 19;
 }
 .my-thanks-note.reveal { 
-    right: 100px; /* Позиція на столі */
-    top: 400px;
+    right: 9.6vw; /* Позиція на столі */
+    top: 38.4vw;
 
     transform: rotate(5deg); 
 }
@@ -311,7 +311,7 @@
     left: 50% !important;
     right: auto !important;
     bottom: auto !important;
-    width: 450px !important; /* Тут вона стає великою */
+    width: 43.2vw !important; /* Тут вона стає великою */
     transform: translate(-50%, -50%) !important;
     z-index: 1000;
 }

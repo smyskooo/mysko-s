@@ -156,9 +156,9 @@
 .light-switch {
     position: fixed;
     top: -200px; /* Схований за край */
-    right: 10%;
-    width: 30px;
-    height: 300px;
+    right: 10vw;
+    width: 3vw;
+    height: 31vh;
     cursor: grab;
     z-index: 9999;
     
@@ -282,8 +282,8 @@
 .extra-decor {
     position: absolute;
     /* Виставляємо координати, щоб він був помітним */
-    bottom: -90%;
-    left: 85%; 
+    bottom: -37vh;
+    left: 85vw; 
     width: 17vw; /* Обов'язково вкажи ширину, інакше картинка може бути 0px */
     height: auto;
     z-index: 49; /* Високий пріоритет */
@@ -463,12 +463,12 @@ video {
 }
 
 /* Куди вони приземляються (підкручуй ці цифри, щоб змінити висоту) */
-.star-top-1.appear { top: 60px; }
-.star-top-2.appear { top: 50px; }
-.star-top-3.appear { top: 40px; }
+.star-top-1.appear { top: 8.7vh; }
+.star-top-2.appear { top: 7.8vh; }
+.star-top-3.appear { top: 6.8vh; }
 
-.star-bottom-1.appear { bottom: 35px; }
-.star-bottom-2.appear { bottom: -15px; }
+.star-bottom-1.appear { bottom: 6.3vh; }
+.star-bottom-2.appear { bottom: -1.5vh; }
 
 /* 3. АНІМАЦІЯ ХАОТИЧНОГО РУХУ */
 @keyframes floatStar {
